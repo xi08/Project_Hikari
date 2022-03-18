@@ -1,0 +1,117 @@
+C251 COMPILER V5.60.0,  motor                                                              14/03/22  14:46:24  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE motor
+OBJECT MODULE PLACED IN .\Output\motor.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE User\motor.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(.\Code;.\Lib\l
+                    -ibraries;.\Lib\seekfree_libraries;.\Lib\seekfree_peripheral;.\User) DEFINE(USE_8701E) DEBUG PRINT(.\Output\motor.lst) OB
+                    -JECT(.\Output\motor.obj) 
+
+stmt  level    source
+
+    1          /*  code=utf-8
+    2              Project Hikari 电机驱动
+    3          */
+    4          #include "motor.h"
+    5          #include "pid.h"
+    6          //
+    7          volatile PID_extNode motor0PID, motor1PID;
+    8          //初始化电机驱动
+    9          void motorInit(void)
+   10          {
+   11   1          pwm_init(Motor_PWM1, motorPWMfreq, 0);
+   12   1          pwm_init(Motor_PWM2, motorPWMfreq, 0);
+   13   1      #ifdef USE_8701E
+   14   1          gpio_mode(Motor_DIR1, GPO_PP);
+   15   1          gpio_mode(Motor_DIR2, GPO_PP);
+   16   1      #endif
+   17   1      #ifdef USE_298N
+                   gpio_mode(Motor_DIR1A, GPO_PP);
+                   gpio_mode(Motor_DIR1B, GPO_PP);
+                   gpio_mode(Motor_DIR2A, GPO_PP);
+                   gpio_mode(Motor_DIR2B, GPO_PP);
+               #endif
+   23   1      }
+   24          //占空比输入的电机直接控制
+   25          void motor0DirectCtrl(int16 pwmDuty)
+   26          {
+   27   1      #ifdef USE_8701E
+   28   1          bit dir;
+   29   1          int16 duty;
+   30   1          dir = neg(pwmDuty);
+   31   1          duty = abs(pwmDuty);
+   32   1          Motor_DIR1 = dir;
+   33   1          pwm_duty(Motor_PWM1, duty);
+   34   1      #endif
+   35   1      #ifdef USE_298N
+                   bit dirA, dirB;
+                   int16 duty;
+                   dirA = neg(pwmDuty);
+                   dirB = !dirA;
+                   duty = abs(pwmDuty);
+                   Motor_DIR1A = dirA;
+                   Motor_DIR1B = dirB;
+                   pwm_duty(Motor_PWM1, duty);
+               #endif
+   45   1      }
+   46          void motor1DirectCtrl(int16 pwmDuty)
+   47          {
+   48   1      #ifdef USE_8701E
+   49   1          bit dir;
+   50   1          int16 duty;
+   51   1          dir = neg(pwmDuty);
+   52   1          duty = abs(pwmDuty);
+   53   1          Motor_DIR2 = dir;
+   54   1          pwm_duty(Motor_PWM2, duty);
+   55   1      #endif
+   56   1      #ifdef USE_298N
+                   bit dirA, dirB;
+C251 COMPILER V5.60.0,  motor                                                              14/03/22  14:46:24  PAGE 2   
+
+                   int16 duty;
+                   dirA = neg(pwmDuty);
+                   dirB = !dirA;
+                   duty = abs(pwmDuty);
+                   Motor_DIR2A = dirA;
+                   Motor_DIR2B = dirB;
+                   pwm_duty(Motor_PWM2, duty);
+               #endif
+   66   1      }
+   67          
+   68          // PID电机占空比计算
+   69          int16 motor0DutyUpdate(int16 encoderData)
+   70          {
+   71   1          motor0PID.actual = encoderData;
+   72   1          pidUpdate_ext(&motor0PID);
+   73   1          return (motor0PID.output);
+   74   1      }
+   75          int16 motor1DutyUpdate(int16 encoderData)
+   76          {
+   77   1          motor1PID.actual = encoderData;
+   78   1          pidUpdate_ext(&motor1PID);
+   79   1          return (motor1PID.output);
+   80   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       178     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =        76     ------
+  bit size             =    ------          2
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,1 @@
+"User\key.c" XSMALL INTR2 WARNINGLEVEL (3) BROWSE INCDIR(.\Code;.\Lib\libraries;.\Lib\seekfree_libraries;.\Lib\seekfree_peripheral;.\User) DEFINE (USE_8701E) DEBUG PRINT(.\Output\key.lst) OBJECT(.\Output\key.obj)

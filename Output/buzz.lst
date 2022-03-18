@@ -1,0 +1,65 @@
+C251 COMPILER V5.60.0,  buzz                                                               14/03/22  14:46:06  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE buzz
+OBJECT MODULE PLACED IN .\Output\buzz.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE User\buzz.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(.\Code;.\Lib\li
+                    -braries;.\Lib\seekfree_libraries;.\Lib\seekfree_peripheral;.\User) DEFINE(USE_8701E) DEBUG PRINT(.\Output\buzz.lst) OBJE
+                    -CT(.\Output\buzz.obj) 
+
+stmt  level    source
+
+    1          /*  code=utf-8
+    2              Project Hikari 蜂鸣器驱动
+    3          */
+    4          #include "buzz.h"
+    5          //蜂鸣器初始化
+    6          void buzzInit(void)
+    7          {
+    8   1          gpio_mode(P7_7,GPO_PP);
+    9   1          BUZ=0;
+   10   1      }
+   11          
+   12          //短响
+   13          void beepShort(void)
+   14          {
+   15   1          BUZ=1;
+   16   1          delay_ms(50);
+   17   1          BUZ=0;
+   18   1      }
+   19          //长响
+   20          void beepLong(void)
+   21          {
+   22   1          BUZ=1;
+   23   1          delay_ms(150);
+   24   1          BUZ=0;
+   25   1      }
+   26          //警告
+   27          void beepAlert(void)
+   28          {
+   29   1          BUZ=1;
+   30   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        41     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
