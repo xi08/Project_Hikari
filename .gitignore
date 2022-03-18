@@ -10,14 +10,14 @@
 !*.UV2
 
 # Source Files
-!*.A51
-!*.A66
-!*.C
-!*.CPP
+!*.ASM
 !*.H
-!*.INC
+!*.C
 !*.S
-!*.SRC
+!*.asm
+!*.h
+!*.c
+!*.s
 
 # Listing Files
 *.COD
