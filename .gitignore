@@ -1,5 +1,5 @@
 /Output
-*lib
+*.lib
 *.asm
 *.LIB
 *.ASM
