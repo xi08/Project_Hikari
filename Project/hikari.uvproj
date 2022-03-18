@@ -45,14 +45,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\Output\</OutputDirectory>
+          <OutputDirectory>..\Output\</OutputDirectory>
           <OutputName>smartCar</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\Output\</ListingPath>
+          <ListingPath>..\Output\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define>USE_8701E</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Code;.\Lib\libraries;.\Lib\seekfree_libraries;.\Lib\seekfree_peripheral;.\User</IncludePath>
+              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -327,57 +327,57 @@
             <File>
               <FileName>zf_adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_adc.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_adc.c</FilePath>
             </File>
             <File>
               <FileName>zf_delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_delay.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_delay.c</FilePath>
             </File>
             <File>
               <FileName>zf_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_exti.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_exti.c</FilePath>
             </File>
             <File>
               <FileName>zf_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_gpio.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_gpio.c</FilePath>
             </File>
             <File>
               <FileName>zf_iic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_iic.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_iic.c</FilePath>
             </File>
             <File>
               <FileName>zf_mdu16.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_mdu16.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_mdu16.c</FilePath>
             </File>
             <File>
               <FileName>zf_nvic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_nvic.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_nvic.c</FilePath>
             </File>
             <File>
               <FileName>zf_pwm.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_pwm.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_pwm.c</FilePath>
             </File>
             <File>
               <FileName>zf_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_spi.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_spi.c</FilePath>
             </File>
             <File>
               <FileName>zf_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_tim.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_tim.c</FilePath>
             </File>
             <File>
               <FileName>zf_uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_libraries\zf_uart.c</FilePath>
+              <FilePath>..\Lib\seekfree_libraries\zf_uart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -387,32 +387,32 @@
             <File>
               <FileName>SEEKFREE_18TFT.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_peripheral\SEEKFREE_18TFT.c</FilePath>
+              <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_18TFT.c</FilePath>
             </File>
             <File>
               <FileName>SEEKFREE_AT24C02.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_peripheral\SEEKFREE_AT24C02.c</FilePath>
+              <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_AT24C02.c</FilePath>
             </File>
             <File>
               <FileName>SEEKFREE_BLUETOOTH_CH9141.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c</FilePath>
+              <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c</FilePath>
             </File>
             <File>
               <FileName>SEEKFREE_FONT.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_peripheral\SEEKFREE_FONT.c</FilePath>
+              <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_FONT.c</FilePath>
             </File>
             <File>
               <FileName>SEEKFREE_IIC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_peripheral\SEEKFREE_IIC.c</FilePath>
+              <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_IIC.c</FilePath>
             </File>
             <File>
               <FileName>SEEKFREE_WIRELESS.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\seekfree_peripheral\SEEKFREE_WIRELESS.c</FilePath>
+              <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_WIRELESS.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -422,32 +422,37 @@
             <File>
               <FileName>board.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\libraries\board.c</FilePath>
+              <FilePath>..\Lib\libraries\board.c</FilePath>
             </File>
             <File>
               <FileName>common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\libraries\common.c</FilePath>
+              <FilePath>..\Lib\libraries\common.c</FilePath>
             </File>
             <File>
               <FileName>SEEKFREE_PRINTF.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lib\libraries\SEEKFREE_PRINTF.c</FilePath>
+              <FilePath>..\Lib\libraries\SEEKFREE_PRINTF.c</FilePath>
             </File>
             <File>
               <FileName>STC_DFP.LIB</FileName>
               <FileType>4</FileType>
-              <FilePath>.\Lib\libraries\STC_DFP.LIB</FilePath>
+              <FilePath>..\Lib\libraries\STC_DFP.LIB</FilePath>
             </File>
             <File>
               <FileName>STC16_FPMU_V10.LIB</FileName>
               <FileType>4</FileType>
-              <FilePath>.\Lib\libraries\STC16_FPMU_V10.LIB</FilePath>
+              <FilePath>..\Lib\libraries\STC16_FPMU_V10.LIB</FilePath>
             </File>
             <File>
               <FileName>STC16_MDU32_V10.LIB</FileName>
               <FileType>4</FileType>
-              <FilePath>.\Lib\libraries\STC16_MDU32_V10.LIB</FilePath>
+              <FilePath>..\Lib\libraries\STC16_MDU32_V10.LIB</FilePath>
+            </File>
+            <File>
+              <FileName>MDU32.ASM</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\Lib\libraries\MDU32.ASM</FilePath>
             </File>
           </Files>
         </Group>
@@ -457,12 +462,12 @@
             <File>
               <FileName>isr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Code\isr.c</FilePath>
+              <FilePath>..\Code\isr.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Code\main.c</FilePath>
+              <FilePath>..\Code\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -472,42 +477,42 @@
             <File>
               <FileName>buzz.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\buzz.c</FilePath>
-            </File>
-            <File>
-              <FileName>key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\key.c</FilePath>
-            </File>
-            <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\misc.c</FilePath>
+              <FilePath>..\User\buzz.c</FilePath>
             </File>
             <File>
               <FileName>encoder.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\encoder.c</FilePath>
-            </File>
-            <File>
-              <FileName>motor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\motor.c</FilePath>
-            </File>
-            <File>
-              <FileName>servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\servo.c</FilePath>
+              <FilePath>..\User\encoder.c</FilePath>
             </File>
             <File>
               <FileName>indNavi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\indNavi.c</FilePath>
+              <FilePath>..\User\indNavi.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\motor.c</FilePath>
             </File>
             <File>
               <FileName>pid.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\pid.c</FilePath>
+              <FilePath>..\User\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\servo.c</FilePath>
             </File>
           </Files>
         </Group>

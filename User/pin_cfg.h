@@ -13,7 +13,7 @@
 
 /* 蜂鸣器 */
 #define BUZ P77
-#ifdef BUZZ_EXT_PWM 
+#ifdef BUZZ_EXT_PWM
 #define BUZ_PWM PWMB_CH4_P77
 #endif
 
@@ -126,7 +126,5 @@
 #define UD_Rx UART3_RX_P50
 #define UD_Tx UART3_TX_P51
 #define UD_RTS P12
-
-
 
 #endif

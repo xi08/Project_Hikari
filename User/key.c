@@ -8,15 +8,7 @@ volatile keyState_enum keyState[keyNum];
 extern volatile timeDataType misc_tick;
 //按键按下时间戳
 timeDataType keyPressTimestamp[keyNum];
-//按键初始化
-void keyInit(void)
-{
-#ifdef KEY_EXT_ARRAY
 
-#else
-
-#endif
-}
 //按键状态更新
 void updateKey(void)
 {

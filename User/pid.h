@@ -5,7 +5,7 @@
 #define pid_h
 #include "aa_all_cfg.h"
 //基础增量式PID
-typedef struct PID_baseNode
+typedef struct
 {
     int16 target, actual;
     int16 err, err_1, err_2; // err(t),err(t-1),err(t-2)
@@ -15,9 +15,8 @@ typedef struct PID_baseNode
 
 void pidUpdate_base(volatile PID_baseNode *);
 
-
 //变积分增量式PID
-typedef struct PID_extNode
+typedef struct 
 {
     int16 target, actual;
     int16 err, err_1, err_2; // err(t),err(t-1),err(t-2)
@@ -28,7 +27,5 @@ typedef struct PID_extNode
 } PID_extNode;
 
 void pidUpdate_ext(volatile PID_extNode *);
-
-
 
 #endif
