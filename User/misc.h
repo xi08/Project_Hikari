@@ -5,18 +5,18 @@
 #define misc_h
 #include "aa_all_cfg.h"
 
-//杂项周期计数器
+// 杂项周期计数器
 extern volatile timeDataType misc_tick;
-//系统警报状态
+// 系统警报状态
 extern volatile alertState_enum sysAlertState;
-//驱动刷新标记
+// 驱动刷新标记
 extern volatile bit drvFlag;
 
-//系统启动
+// 系统启动
 void system_init(void);
-//核心轮询功能
+// 核心轮询功能
 void system_loop(void);
-//驱动控制
+// 驱动控制
 void drvFUNC(void);
 
 #endif

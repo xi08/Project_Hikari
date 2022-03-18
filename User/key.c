@@ -2,14 +2,14 @@
     Project Hikari 按键与拨码开关
 */
 #include "key.h"
-//状态枚举
+// 状态枚举
 volatile keyState_enum keyState[keyNum];
-//引入周期计数器
+// 引入周期计数器
 extern volatile timeDataType misc_tick;
-//按键按下时间戳
+// 按键按下时间戳
 timeDataType keyPressTimestamp[keyNum];
 
-//按键状态更新
+// 按键状态更新
 void updateKey(void)
 {
     uint8 i = keyNum;

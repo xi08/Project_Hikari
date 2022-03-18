@@ -2,10 +2,9 @@
     Project Hikari 电机驱动
 */
 #include "motor.h"
-#include "pid.h"
-//
+// PID控制
 volatile PID_extNode motor0PID, motor1PID;
-//初始化电机驱动
+// 初始化电机驱动
 void motorInit(void)
 {
     pwm_init(Motor_PWM1, motorPWMfreq, 0);
@@ -21,7 +20,7 @@ void motorInit(void)
     gpio_mode(Motor_DIR2B, GPO_PP);
 #endif
 }
-//占空比输入的电机直接控制
+// 占空比输入的电机直接控制
 void motor0DirectCtrl(int16 pwmDuty)
 {
 #ifdef USE_8701E

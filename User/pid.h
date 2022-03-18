@@ -4,7 +4,7 @@
 #ifndef pid_h
 #define pid_h
 #include "aa_all_cfg.h"
-//基础增量式PID
+// 基础增量式PID
 typedef struct
 {
     int16 target, actual;
@@ -15,7 +15,7 @@ typedef struct
 
 void pidUpdate_base(volatile PID_baseNode *);
 
-//变积分增量式PID
+// 变积分增量式PID
 typedef struct 
 {
     int16 target, actual;

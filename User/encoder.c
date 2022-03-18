@@ -3,13 +3,13 @@
 */
 #include "encoder.h"
 
-//初始化编码器输入
+// 初始化编码器输入
 void encoderInit(void)
 {
     ctimer_count_init(Encoder0_Pluse);
     ctimer_count_init(Encoder1_Pluse);
 }
-//读出编码器值
+// 读出编码器值
 int16 getEncoder0Data(void)
 {
     int16 tmp = ctimer_count_read(Encoder0_Pluse);

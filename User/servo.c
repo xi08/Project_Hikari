@@ -2,10 +2,9 @@
     Project Hikari 舵机驱动
 */
 #include "servo.h"
-#include "pid.h"
-//舵机PID
+// 舵机PID
 volatile PID_baseNode servoPID;
-//初始化舵机驱动
+// 初始化舵机驱动
 void servoInit(void)
 {
     pwm_init(Servo_PWM, servoPWMfreq, servoDutyMid);
