@@ -1,1 +1,5 @@
 /Output
+/Lib/libraries/*.lib
+/Lib/libraries/*.asm
+/Lib/libraries/*.LIB
+/Lib/libraries/*.ASM
