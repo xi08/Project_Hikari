@@ -449,11 +449,6 @@
               <FileType>4</FileType>
               <FilePath>..\Lib\libraries\STC16_MDU32_V10.LIB</FilePath>
             </File>
-            <File>
-              <FileName>MDU32.ASM</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\Lib\libraries\MDU32.ASM</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
