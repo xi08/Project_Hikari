@@ -43,7 +43,6 @@
 /Listings
 /Objects
 /DebugConfig
-/Output
 
 # Debugger files
 # define exception below if needed
@@ -76,4 +75,4 @@
 *.iex
 
 #VSCode Settings
-.vscode/*
+/.vscode
