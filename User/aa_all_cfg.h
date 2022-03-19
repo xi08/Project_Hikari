@@ -22,14 +22,19 @@ typedef uint32 timeDataType;
 #define BATTMIN 7.5
 #define BATTMAX 8.5
 
-
 // 电机定时中断周期，ms
 #define PITD 5
 // 系统心跳定时周期，ms
 #define PITM 25
 
 // 按键计数
+#if (defined(KEY_EXT_Matrix))
+#define keyNum 9
+#elif (defined(KEY_EXT_6KEY))
+#define keyNum 6
+#else
 #define keyNum 4
+#endif
 // 长按所需周期，n*PITM
 #define keyLongPressTime 16
 // 短按所需周期，n*PITM

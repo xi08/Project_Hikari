@@ -12,23 +12,58 @@ timeDataType keyPressTimestamp[keyNum];
 // 按键状态更新
 void updateKey(void)
 {
-    uint8 i = keyNum;
+    uint8 i = keyNum, keyInfo = 0xff;
+#ifdef KEY_EXT_Matrix // 键盘矩阵
     //获取按键信息
-#ifdef KEY_EXT_ARRAY // 键盘矩阵
+    //第0列
+    KeyMatrix_X0 = 1;
+    if (KeyMatrix_Y0)
+        keyInfo = 0;
+    if (KeyMatrix_Y1)
+        keyInfo = 1;
+    if (KeyMatrix_Y2)
+        keyInfo = 2;
+    KeyMatrix_X0 = 0;
+    //第1列
+    keyMatrix_X1 = 1;
+    if (KeyMatrix_Y0)
+        keyInfo = 3;
+    if (KeyMatrix_Y1)
+        keyInfo = 4;
+    if (KeyMatrix_Y2)
+        keyInfo = 5;
+    keyMatrix_X1 = 0;
+    //第2列
+    keyMatrix_X2 = 1;
+    if (KeyMatrix_Y0)
+        keyInfo = 6;
+    if (KeyMatrix_Y1)
+        keyInfo = 7;
+    if (KeyMatrix_Y2)
+        keyInfo = 8;
+    keyMatrix_X2 = 0;
 
 #else // 每个GPIO一个按键
-    uint8 keyInfo =
-        (((uint8)Key0) << 0) +
-        (((uint8)Key1) << 1) +
-        (((uint8)Key2) << 2) +
-        (((uint8)Key3) << 3);
+    //获取按键信息
+    keyInfo ^= (((uint8)Key0) << 0);
+    keyInfo ^= (((uint8)Key1) << 1);
+    keyInfo ^= (((uint8)Key2) << 2);
+    keyInfo ^= (((uint8)Key3) << 3);
+#ifdef KEY_EXT_6KEY
+    keyInfo ^= (((uint8)Key4) << 4);
+    keyInfo ^= (((uint8)Key5) << 5);
 #endif
     // 按键信息转换
     while (i--)
     {
         // 按键按下
-        if (!(keyInfo & (1 << i)))
+#ifdef KEY_EXT_Matrix
+        if (i == keyInfo)
         {
+#else
+        if (keyInfo & (1 << i))
+        {
+#endif
             switch (keyState[i])
             {
             case S0:
@@ -43,8 +78,13 @@ void updateKey(void)
             }
         }
         // 按键抬起
-        if (keyInfo & (1 << i))
+#ifdef KEY_EXT_Matrix
+        if (i != keyInfo)
         {
+#else
+        if (!(keyInfo & (1 << i)))
+        {
+#endif
             switch (keyState[i])
             {
             case S2:
@@ -61,4 +101,5 @@ void updateKey(void)
             }
         }
     }
+#endif
 }

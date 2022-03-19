@@ -22,19 +22,25 @@
 #define Switch1 P76
 
 /* 按键 */
+// 按键阵列
+#ifdef KEY_EXT_Matrix
+#define KeyMatrix_X0 P70
+#define KeyMatrix_X1 P71
+#define KeyMatrix_X2 P72
+#define KeyMatrix_Y0 P73
+#define KeyMatrix_Y1 P65
+#define KeyMatrix_Y2 P67
+#else
 // GPIO按键
 #define Key0 P70
 #define Key1 P71
 #define Key2 P72
 #define Key3 P73
-// 按键阵列
-#ifdef KEY_EXT_ARRAY
-#define KeyArray_X0 P70
-#define KeyArray_Y0 P71
-#define KeyArray_X1 P72
-#define KeyArray_Y1 P73
-#define KeyArray_X2 P65
-#define KeyArray_Y2 P67
+// GPIO按键扩展
+#ifdef KEY_EXT_6KEY
+#define Key4 P65
+#define Key5 P67
+#endif
 #endif
 
 /* 编码器 */
