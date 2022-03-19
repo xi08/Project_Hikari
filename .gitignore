@@ -1,27 +1,21 @@
 # A .gitignore for Keil projects.
 # Taken mostly from http://www.keil.com/support/man/docs/uv4/uv4_b_filetypes.htm
 
-# User-specific uVision files
+# uVision files
 *.opt
+*.uv2
 *uvopt*
 *uvgui*
 *uvproj.bak
 
-# Listing files
-*.cod
-*.htm
-*.i
-*.lst
-*.map
-*.m51
-*.m66
-# define exception below if needed
-*.scr
+# Listing, Object, and Debug folder
+/Listings
+/Objects
+/DebugConfig
 
-# Object and HEX files
+# Binary files
 *.axf
 *.b[0-3][0-9]
-*.hex
 *.d
 *.crf
 *.elf
@@ -33,16 +27,10 @@
 *.sbr
 
 # Build files
-# define exception below if needed
 *.bat
 *._ia
 *.__i
 *._ii
-
-# Generated output files
-/Listings
-/Objects
-/DebugConfig
 
 # Debugger files
 *.ini
@@ -62,9 +50,8 @@
 *.sfd
 *.sfr
 
-# Miscellaneous
+# Misc
 *.tra
-*.bin
 *.fed
 *.l1p
 *.l2p
@@ -72,3 +59,5 @@
 
 #VSCode Settings
 /.vscode
+
+/Priv
