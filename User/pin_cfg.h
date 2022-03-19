@@ -64,24 +64,30 @@
 #define Servo_PWM PWMB_CH1_P74
 
 /* 电机 */
-#define Motor_PWM1 PWMA_CH4P_P66
-#define Motor_PWM2 PWMA_CH2P_P62
-// L298N
-#ifdef USE_298N
-#define Motor_DIR1A P64
-#define Motor_DIR2A P60
-#define Motor_DIR1B P61
-#define Motor_DIR2B P63
-#endif
+
 // DRV8701E
 #ifdef USE_8701E
-#define Motor_DIR1 P64
-#define Motor_DIR2 P60
+#define Motor_PWM0 PWMA_CH4P_P66
+#define Motor_PWM1 PWMA_CH2P_P62
+#define Motor_DIR0 P64
+#define Motor_DIR1 P60
 #endif
+// L298N
+#ifdef USE_298N
+#define Motor_PWM0 PWMA_CH4P_P66
+#define Motor_PWM1 PWMA_CH2P_P62
+#define Motor_DIR0A P64
+#define Motor_DIR0B P61
+#define Motor_DIR1A P60
+#define Motor_DIR1B P63
+#endif
+
 // HIP4082
 #ifdef USE_4082
-#define Motor_PWM1_Aux P64
-#define Motor_PWM2_Aux P60
+#define Motor_PWM0A PWMA_CH4P_P64
+#define Motor_PWM1A PWMA_CH2P_P60
+#define Motor_PWM0B PWMA_CH3P_P66
+#define Motor_PWM1B PWMA_CH1P_P62
 #endif
 
 /* 霍尔检测 */

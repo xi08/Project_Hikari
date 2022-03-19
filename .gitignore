@@ -45,7 +45,6 @@
 /DebugConfig
 
 # Debugger files
-# define exception below if needed
 *.ini
 
 # Other files
@@ -56,12 +55,9 @@
 *.lin
 *.lnp
 *.orc
-# define exception below if needed
 *.pack
-# define exception below if needed
 *.pdsc
 *.plg
-# define exception below if needed
 *.sct
 *.sfd
 *.sfr
