@@ -24,6 +24,7 @@
 #include "servo.h"
 #include "motor.h"
 #include "indNavi.h"
+#include "ui.h"
 
 //编码器数据
 int16 encoder_data[2];
@@ -59,41 +60,43 @@ void main()
         if (drvFlag)
         {
             drvFUNC();
-            // 数据上屏
-            lcd_showint32(40, 4, encoder_data[0], 4);
-            lcd_showint32(80, 4, encoder_data[1], 4);
-            lcd_showint32(48, 8, indFilteredData[0], 2);
-            lcd_showint32(72, 8, indFilteredData[1], 2);
-            lcd_showint32(96, 8, indFilteredData[2], 2);
-#ifdef IND_EXT_MidSide
-            lcd_showint32(48, 9, indFilteredData[3], 2);
-            lcd_showint32(72, 9, indFilteredData[4], 2);
-#endif
-#ifdef IND_EXT_MidRear
-            lcd_showint32(96, 9, indFilteredData[5], 2);
-#endif
             // 清除电机中断标记
             drvFlag = !drvFlag;
         }
-        //刷新霍尔传感
-        lcd_showstr(40, 2, (Hall ? "N" : "D"));
     }
 }
 //驱动控制
 void drvFUNC(void)
 {
-    // 同步编码器
-    encoder_data[0] = getEncoder0Data();
-    encoder_data[1] = -getEncoder1Data();
-    // 同步电感
-    getIndInfo(ind_data);
-    // 计算
-    
-    // 同步舵机
-    servoDirectCtrl(&servo_duty);
-    // 同步电机
-    motor0DirectCtrl(motor_duty[0]);
-    motor1DirectCtrl(motor_duty[1]);
+    if (uiState == Running)
+    {
+        // 数据上屏
+        lcd_showstr(40, 2, (Hall ? "N" : "D"));
+        lcd_showint32(40, 4, encoder_data[0], 4);
+        lcd_showint32(80, 4, encoder_data[1], 4);
+        lcd_showint32(48, 8, indFilteredData[0], 2);
+        lcd_showint32(72, 8, indFilteredData[1], 2);
+        lcd_showint32(96, 8, indFilteredData[2], 2);
+#ifdef IND_EXT_MidSide
+        lcd_showint32(48, 9, indFilteredData[3], 2);
+        lcd_showint32(72, 9, indFilteredData[4], 2);
+#endif
+#ifdef IND_EXT_MidRear
+        lcd_showint32(96, 9, indFilteredData[5], 2);
+#endif
+        // 同步编码器
+        encoder_data[0] = getEncoder0Data();
+        encoder_data[1] = -getEncoder1Data();
+        // 同步电感
+        getIndInfo(ind_data);
+        // 计算
+
+        // 同步舵机
+        servoDirectCtrl(&servo_duty);
+        // 同步电机
+        motor0DirectCtrl(motor_duty[0]);
+        motor1DirectCtrl(motor_duty[1]);
+    }
 }
 //按键处理
 void keyProg(void)

@@ -49,16 +49,19 @@
 #define Encoder1_Pluse CTIM3_P04
 #define Encoder1_Dir P53
 
-/* 显示 */
-// 定义在库文件中，这里仅占位
-#define DISP_SPIx SPI_CH2
-#define DISP_SCLK SPI_CH2_SCLK_P25
-#define DISP_MOSI SPI_CH2_MOSI_P23
-#define DISP_MISO SPI_CH2_MISO_P24
+/* 显示与SPI设备 */
+// SD定义为共用，DISP定义为显示屏用
+#define SD_SPIx SPI_CH2
+#define SD_SCLK SPI_CH2_SCLK_P25
+#define SD_MOSI SPI_CH2_MOSI_P23
+#define SD_MISO SPI_CH2_MISO_P24
 #define DISP_RST P20
 #define DISP_CMD P21
-#define DISP_CS0 P22
+#define DISP_CS P22
 #define DISP_BL P27
+#define SD_CS0 P42
+#define SD_CS1 P44
+#define SD_CS2 P45
 
 /* 舵机 */
 #define Servo_PWM PWMB_CH1_P74
@@ -111,15 +114,6 @@
 #define E2P_I2C IIC_4
 #define E2P_SCL IIC4_SCL_P32
 #define E2P_SDA IIC4_SDA_P33
-
-/* 各种SPI设备 */
-#define SD_SPIx SPI_CH3
-#define SD_SCLK SPI_CH3_SCLK_P43
-#define SD_MOSI SPI_CH3_MOSI_P40
-#define SD_MISO SPI_CH3_MISO_P41
-#define SD_CS0 P42
-#define SD_CS1 P44
-#define SD_CS2 P45
 
 /* 胶水双核互联 */
 #define IC_UARTx UART_2

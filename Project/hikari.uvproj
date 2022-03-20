@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define>USE_8701E</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User</IncludePath>
+              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -414,6 +414,11 @@
               <FileType>1</FileType>
               <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_WIRELESS.c</FilePath>
             </File>
+            <File>
+              <FileName>TFT18.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Periph\TFT18.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -508,6 +513,11 @@
               <FileName>servo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\ui.c</FilePath>
             </File>
           </Files>
         </Group>
