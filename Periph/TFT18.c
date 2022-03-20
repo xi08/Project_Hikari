@@ -9,7 +9,7 @@
 // 前景色
 uint16 tftColorF = 0x0000;
 // 背景色
-uint16 tftColorB = 0xFFFF;
+uint16 tftColorB = 0xffff;
 
 // 写命令
 void _tftWriteCMD8(uint8 dat)
@@ -58,23 +58,23 @@ void tftSetColorB(uint16 color)
 {
 }
 // 显示字符
-void tftDispChar(uint16 x, uint16 y, const int8 c)
+void tftDispChar(uint16 posX, uint16 posY, const int8 ch)
 {
 }
 // 显示字符串
-void tftDispStr(uint16 x, uint16 y, const int8 *str)
+void tftDispStr(uint16 posX, uint16 posY, const int8 *str)
 {
 }
 // 显示有符号数字
-void tftDispInt(uint16 x, uint16 y, int32 num, uint8 digit_i)
+void tftDispInt(uint16 posX, uint16 posY, int32 num, uint8 digit_i)
 {
 }
 // 显示无符号数字
-void tftDispUint(uint16 x, uint16 y, uint32 num, uint8 digit_i)
+void tftDispUint(uint16 posX, uint16 posY, uint32 num, uint8 digit_i)
 {
 }
 // 显示浮点数
-void tftDispFloat(uint16 x, uint16 y, float num, uint8 digit_i, uint8 digit_d)
+void tftDispFloat(uint16 posX, uint16 posY, float num, uint8 digit_i, uint8 digit_d)
 {
 }
 // 显示 128*128 图片

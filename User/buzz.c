@@ -5,26 +5,30 @@
 // 蜂鸣器初始化
 void buzzInit(void)
 {
-    gpio_mode(P7_7,GPO_PP);
-    BUZ=0;
+#ifdef BUZZ_EXT_PWM
+    pwm_init(BUZZ_PWM, 50, 0);
+#else
+    gpio_mode(Buzz, GPO_PP);
+    BUZZ = 0;
+#endif
 }
 
 // 短响
 void beepShort(void)
 {
-    BUZ=1;
+    BUZZ = 1;
     delay_ms(50);
-    BUZ=0;
+    BUZZ = 0;
 }
 // 长响
 void beepLong(void)
 {
-    BUZ=1;
+    BUZZ = 1;
     delay_ms(150);
-    BUZ=0;
+    BUZZ = 0;
 }
 // 警告
 void beepAlert(void)
 {
-    BUZ=1;
+    BUZZ = 1;
 }

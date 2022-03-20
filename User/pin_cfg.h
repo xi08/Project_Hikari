@@ -12,9 +12,12 @@
 #define BATT ADC_P15
 
 /* 蜂鸣器 */
-#define BUZ P77
+
 #ifdef BUZZ_EXT_PWM
-#define BUZ_PWM PWMB_CH4_P77
+#define BUZZ_PWM PWMB_CH4_P77
+#else
+#define BUZZ P77
+#define Buzz P7_7
 #endif
 
 /* 拨码开关 */
@@ -50,7 +53,7 @@
 #define Encoder1_Dir P53
 
 /* 显示与SPI设备 */
-// SD定义为共用，DISP定义为显示屏用
+// SD定义为共用，DISP定义为显示屏专用
 #define SD_SPIx SPI_CH2
 #define SD_SCLK SPI_CH2_SCLK_P25
 #define SD_MOSI SPI_CH2_MOSI_P23
@@ -72,25 +75,30 @@
 #ifdef USE_8701E
 #define Motor_PWM0 PWMA_CH4P_P66
 #define Motor_PWM1 PWMA_CH2P_P62
+#define Motor_Dir0 P6_4
 #define Motor_DIR0 P64
+#define Motor_Dir1 P6_0
 #define Motor_DIR1 P60
 #endif
-// L298N
-#ifdef USE_298N
-#define Motor_PWM0 PWMA_CH4P_P66
-#define Motor_PWM1 PWMA_CH2P_P62
-#define Motor_DIR0A P64
-#define Motor_DIR0B P61
-#define Motor_DIR1A P60
-#define Motor_DIR1B P63
-#endif
-
 // HIP4082
 #ifdef USE_4082
 #define Motor_PWM0A PWMA_CH4P_P64
 #define Motor_PWM1A PWMA_CH2P_P60
 #define Motor_PWM0B PWMA_CH3P_P66
 #define Motor_PWM1B PWMA_CH1P_P62
+#endif
+// L298N
+#ifdef USE_298N
+#define Motor_PWM0 PWMA_CH4P_P66
+#define Motor_PWM1 PWMA_CH2P_P62
+#define Motor_Dir0A P6_4
+#define Motor_DIR0A P64
+#define Motor_Dir0B P6_1
+#define Motor_DIR0B P61
+#define Motor_Dir1A P6_0
+#define Motor_DIR1A P60
+#define Motor_Dir1B P6_3
+#define Motor_DIR1B P63
 #endif
 
 /* 霍尔检测 */
