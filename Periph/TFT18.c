@@ -193,19 +193,19 @@ void tftDispChar(uint16 posX, uint16 posY, const int8 ch)
 	}
 }
 // 显示字符串
-void tftDispStr(uint16 x, uint16 y, const int8 *str)
+void tftDispStr(uint16 posX, uint16 posY, const int8 *str)
 {
 	size_t j = 0;
 	while (str[j])
 	{
-		tftDispChar(x + 8 * j, y * 16, str[j]);
+		tftDispChar(posX + 8 * j, posY * 16, str[j]);
 		j++;
 	}
 }
 // 显示有符号数字
-void tftDispInt(uint16 x, uint16 y, int32 num, uint8 digit_i)
+void tftDispInt(uint16 posX, uint16 posY, int32 num, uint8 digit_i)
 {
-	int8 buff[12];
+	int8 buff[20];
 	uint8 length;
 	if (digit_i > 10)
 		digit_i = 10;
@@ -224,24 +224,26 @@ void tftDispInt(uint16 x, uint16 y, int32 num, uint8 digit_i)
 		buff[length++] = ' ';
 	buff[digit_i] = '\0';
 	//显示
-	tftDispStr(x, y, buff);
+	tftDispStr(posX, posY, buff);
 }
 // 显示无符号数字
-void tftDispUint(uint16 x, uint16 y, uint32 num, uint8 digit_i)
+void tftDispUint(uint16 posX, uint16 posY, uint32 num, uint8 digit_i)
 {
-	int8 buff[12];
+	int8 buff[20];
 	uint8 length;
 	if (digit_i > 10)
 		digit_i = 10;
-	length = zf_sprintf(buff, "%u", num);
+	digit_i++;
+	buff[0] = ' ';
+	length = zf_sprintf(&buff[1], "%u", num);
 	while (length < digit_i)
 		buff[length++] = ' ';
 	buff[digit_i] = '\0';
 
-	tftDispStr(x, y, buff); //显示
+	tftDispStr(posX, posY, buff); //显示
 }
 // 显示浮点数
-void tftDispFloat(uint16 x, uint16 y, float num, uint8 digit_i, uint8 digit_d)
+void tftDispFloat(uint16 posX, uint16 posY, float num, uint8 digit_i, uint8 digit_d)
 {
 	int8 buff[20];
 	uint8 length;
@@ -280,9 +282,18 @@ void tftDispFloat(uint16 x, uint16 y, float num, uint8 digit_i, uint8 digit_d)
 
 	buff[end] = '\0';
 
-	tftDispStr(x, y, buff); //显示数字
+	tftDispStr(posX, posY, buff); //显示数字
 }
 // 显示 128*128 图片
 void tftDispImage(uint16 **pic)
 {
+	uint8 i,j;
+	_tftRegion(0,16,127,144);
+	for(i=0;i<128;i++)
+	{
+		for(j=0;j<128;j++)
+		{
+			_tftWriteDAT16(pic[i][j]);
+		}
+	}
 }
