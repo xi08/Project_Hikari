@@ -270,7 +270,7 @@
             <AcaOpt>0</AcaOpt>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_8701E</Define>
+              <Define>USE_8701E,USE_TFT18</Define>
               <Undefine></Undefine>
               <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph</IncludePath>
             </VariousControls>
@@ -414,11 +414,6 @@
               <FileType>1</FileType>
               <FilePath>..\Lib\seekfree_peripheral\SEEKFREE_WIRELESS.c</FilePath>
             </File>
-            <File>
-              <FileName>TFT18.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Periph\TFT18.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -518,6 +513,21 @@
               <FileName>ui.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\ui.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>AltPeriph</GroupName>
+          <Files>
+            <File>
+              <FileName>DisplayFont.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Periph\DisplayFont.c</FilePath>
+            </File>
+            <File>
+              <FileName>TFT18.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Periph\TFT18.c</FilePath>
             </File>
           </Files>
         </Group>

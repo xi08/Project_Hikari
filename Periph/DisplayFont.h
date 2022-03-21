@@ -3,8 +3,8 @@
 */
 #ifndef DisplayFont_h
 #define DisplayFont_h
+#include "common.h"
 
-#ifdef USE_TFT18
 typedef enum
 {
     Font_8x16,
@@ -13,10 +13,9 @@ typedef enum
 } tftFont_enum;
 
 extern uint8 tftFontX, tftFontY;
-extern uint8 **tftFont;
+extern const uint8 **tftFont;
 void tftChangeFont(tftFont_enum f);
 
-#endif
-extern const uint8 dispFont_8x16[95][16];
-extern const uint8 dispFont_6x8[95][8];
+extern const uint8 code dispFont_8x16[95][16];
+extern const uint8 code dispFont_6x8[95][8];
 #endif

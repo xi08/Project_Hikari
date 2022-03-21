@@ -5,9 +5,8 @@
 
 #ifndef TFT18_h
 #define TFT18_h
-#include "aa_all_cfg.h"
 
-#define USE_TFT18
+#include "aa_all_cfg.h"
 
 extern volatile uint16 tftColorF, tftColorB;
 
@@ -33,6 +32,6 @@ void tftDispUint(uint16 x, uint16 y, uint32 num, uint8 digit_i);
 // 显示浮点数
 void tftDispFloat(uint16 x, uint16 y, float num, uint8 digit_i, uint8 digit_d);
 // 显示 128*128 图片
-void tftDispImage(uint16 *pic);
+void tftDispImage(uint16 **pic);
 
 #endif

@@ -160,6 +160,8 @@ void tftInit(void)
 	_tftWriteCMD8(0x29);
 	//清屏
 	tftClear();
+	//设置字体
+	tftChangeFont(Font_8x16);
 }
 // 清空显示屏
 void tftClear(void)
