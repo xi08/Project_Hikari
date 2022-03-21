@@ -4,7 +4,7 @@
 #ifndef DisplayFont_h
 #define DisplayFont_h
 #include "common.h"
-
+//1.8 TFT
 typedef enum
 {
     Font_8x16,

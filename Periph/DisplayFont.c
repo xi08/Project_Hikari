@@ -2,8 +2,7 @@
     Project Hikari 显示屏字体文件
 */
 #include "DisplayFont.h"
-
-
+// 1.8 TFT
 uint8 tftFontX, tftFontY;
 const uint8 **tftFont;
 void tftChangeFont(tftFont_enum f)

@@ -270,7 +270,7 @@
             <AcaOpt>0</AcaOpt>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_8701E,USE_TFT18</Define>
+              <Define>USE_8701E</Define>
               <Undefine></Undefine>
               <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph</IncludePath>
             </VariousControls>

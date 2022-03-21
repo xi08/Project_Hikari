@@ -173,14 +173,14 @@ void tftClear(void)
 			_tftWriteDAT16(tftColorB);
 }
 // 显示字符
-void tftDispChar(uint16 x, uint16 y, const int8 ch)
+void tftDispChar(uint16 posX, uint16 posY, const int8 ch)
 {
 	uint8 i, j;
 	uint8 fontLineTmp;
 
 	for (i = 0; i < tftFontY; i++)
 	{
-		_tftRegion(x, y + i, x + tftFontX, y + i);
+		_tftRegion(posX, posY + i, posX + tftFontX, posY + i);
 		fontLineTmp = tftFont[ch - ' '][i];
 		for (j = 0; j < tftFontX; j++)
 		{
