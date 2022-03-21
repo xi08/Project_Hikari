@@ -12,7 +12,6 @@
 #define BATT ADC_P15
 
 /* 蜂鸣器 */
-
 #ifdef BUZZ_EXT_PWM
 #define BUZZ_PWM PWMB_CH4_P77
 #else
@@ -70,7 +69,6 @@
 #define Servo_PWM PWMB_CH1_P74
 
 /* 电机 */
-
 // DRV8701E
 #ifdef USE_8701E
 #define Motor_PWM0 PWMA_CH4P_P66

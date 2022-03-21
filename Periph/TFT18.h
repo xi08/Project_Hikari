@@ -9,32 +9,29 @@
 
 #define USE_TFT18
 
-#define tftRST(x) (DISP_RST = x)
-#define tftCMD(x) (DISP_CMD = x)
-#define tftCS(x) (DISP_CS = x)
-#define tftBL(x) (DISP_BL = x)
+extern volatile uint16 tftColorF, tftColorB;
 
-#define tftMaxPosX 128 //液晶X方宽度
-#define tftMaxPosY 160 //液晶Y方宽度
+#define tftMaxX 128 //液晶X方宽度
+#define tftMaxY 160 //液晶Y方宽度
 
 // 初始化显示屏
 void tftInit(void);
 // 清空显示屏
 void tftClear(void);
-// 设置前景颜色
-void tftSetColorF(uint16 color);
-// 设置背景颜色
-void tftSetColorB(uint16 color);
+// 修改前景色
+#define tftSetColorF(Color) (tftColorF = (uint16)Color)
+// 修改背景色
+#define tftSetColorB(Color) (tftColorB = (uint16)Color)
 // 显示字符
-void tftDispChar(uint16 posX, uint16 posY, const int8 ch);
+void tftDispChar(uint16 x, uint16 y, const int8 ch);
 // 显示字符串
-void tftDispStr(uint16 posX, uint16 posY, const int8 *str);
+void tftDispStr(uint16 x, uint16 y, const int8 *str);
 // 显示有符号数字
-void tftDispInt(uint16 posX, uint16 posY, int32 num, uint8 digit_i);
+void tftDispInt(uint16 x, uint16 y, int32 num, uint8 digit_i);
 // 显示无符号数字
-void tftDispUint(uint16 posX, uint16 posY, uint32 num, uint8 digit_i);
+void tftDispUint(uint16 x, uint16 y, uint32 num, uint8 digit_i);
 // 显示浮点数
-void tftDispFloat(uint16 posX, uint16 posY, float num, uint8 digit_i, uint8 digit_d);
+void tftDispFloat(uint16 x, uint16 y, float num, uint8 digit_i, uint8 digit_d);
 // 显示 128*128 图片
 void tftDispImage(uint16 *pic);
 
