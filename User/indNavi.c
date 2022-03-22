@@ -10,6 +10,8 @@ volatile uint16 indFilteredData[indNum];
 // 归一化上下限值
 volatile uint16 indMaxData[indNum], indMinData[indNum];
 
+
+
 // 电感初始化
 void indInit(void)
 {
@@ -34,7 +36,7 @@ void getIndInfo(uint8 *indDataArray)
     // 设置比较量的值
     memset(indRawDataMin, 0xff, indNum * sizeof(uint16));
     // 滤波前获取数据
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < (1<<indFilterT+2); i++)
     {
         // 获取电感值
         indRawData[0] = adc_once(IND_MF, ADC_10BIT);
@@ -62,7 +64,7 @@ void getIndInfo(uint8 *indDataArray)
     for (i = 0; i < indNum; i++)
     {
         indFilteredData[i] -= (indRawDataMax[i] + indRawDataMin[i]);
-        indFilteredData[i] >>= 3;
+        indFilteredData[i] >>= indFilterT;
     }
     // 归一化，自动刷新上下限
     for (i = 0; i < indNum; i++)

@@ -50,6 +50,8 @@ typedef uint32 timeDataType;
 #else
 #define indNum 3
 #endif
+// 电感滤波次数
+#define indFilterT 3
 
 // 舵机驱动频率，Hz
 #define servoPWMfreq 50
