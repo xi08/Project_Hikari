@@ -8,10 +8,11 @@
 // 按键状态枚举
 typedef enum
 {
-    S0, // 没按
+    S0, // 抬起
     S1, // 短按
-    S2, // 等待确认
+    S2, // 按下
     S3, // 长按
+    S4, // 满足长按所需周期但未抬起
 } keyState_enum;
 // 状态枚举
 extern volatile keyState_enum keyState[keyNum];

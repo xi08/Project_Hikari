@@ -71,6 +71,8 @@ void updateKey(void)
                 keyPressTimestamp[i] = misc_tick;
                 break;
             case S2:
+                if (misc_tick - keyPressTimestamp[i] >= keyLongPressTime)
+                    keyState[i] = S4;
                 break;
             default:
                 keyState[i] = S0;
@@ -88,12 +90,13 @@ void updateKey(void)
             switch (keyState[i])
             {
             case S2:
-                if (misc_tick - keyPressTimestamp[i] >= keyLongPressTime)
-                    keyState[i] = S3;
-                else if (misc_tick - keyPressTimestamp[i] >= keyShortPressTime)
+                if (misc_tick - keyPressTimestamp[i] >= keyShortPressTime)
                     keyState[i] = S1;
                 else
                     keyState[i] = S0;
+                break;
+            case S4:
+                keyState[i] = S3;
                 break;
             default:
                 keyState[i] = S0;
