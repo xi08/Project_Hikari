@@ -44,7 +44,7 @@ void updateKey(void)
     keyMatrix_X2 = 0;
 
 #else // 每个GPIO一个按键
-    //获取按键信息
+    //获取按键信息，位反转
     keyInfo ^= (((uint8)Key0) << 0);
     keyInfo ^= (((uint8)Key1) << 1);
     keyInfo ^= (((uint8)Key2) << 2);
