@@ -8,6 +8,15 @@ volatile keyState_enum keyState[keyNum];
 extern volatile timeDataType misc_tick;
 // 按键按下时间戳
 timeDataType keyPressTimestamp[keyNum];
+#ifdef KEY_EXT_Matrix
+// 按键状态初始化
+void keyInit(void)
+{
+    gpio_mode(KeyMatrix_X0_Pin, GPIO);
+    gpio_mode(KeyMatrix_X1_Pin, GPIO);
+    gpio_mode(KeyMatrix_X2_Pin, GPIO);
+}
+#endif
 
 // 按键状态更新
 void updateKey(void)

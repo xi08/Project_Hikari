@@ -29,6 +29,9 @@
 #define KeyMatrix_X0 P70
 #define KeyMatrix_X1 P71
 #define KeyMatrix_X2 P72
+#define KeyMatrix_X0_Pin P7_0
+#define KeyMatrix_X1_Pin P7_1
+#define KeyMatrix_X2_Pin P7_2
 #define KeyMatrix_Y0 P73
 #define KeyMatrix_Y1 P65
 #define KeyMatrix_Y2 P67
@@ -73,9 +76,9 @@
 #ifdef USE_8701E
 #define Motor_PWM0 PWMA_CH4P_P66
 #define Motor_PWM1 PWMA_CH2P_P62
-#define Motor_Dir0 P6_4
+#define Motor_DIR0_Pin P6_4
 #define Motor_DIR0 P64
-#define Motor_Dir1 P6_0
+#define Motor_DIR1_Pin P6_0
 #define Motor_DIR1 P60
 #endif
 // HIP4082
@@ -89,13 +92,13 @@
 #ifdef USE_298N
 #define Motor_PWM0 PWMA_CH4P_P66
 #define Motor_PWM1 PWMA_CH2P_P62
-#define Motor_Dir0A P6_4
+#define Motor_DIR0A_Pin P6_4
 #define Motor_DIR0A P64
-#define Motor_Dir0B P6_1
+#define Motor_DIR0B_Pin P6_1
 #define Motor_DIR0B P61
-#define Motor_Dir1A P6_0
+#define Motor_DIR1A_Pin P6_0
 #define Motor_DIR1A P60
-#define Motor_Dir1B P6_3
+#define Motor_DIR1B_Pin P6_3
 #define Motor_DIR1B P63
 #endif
 

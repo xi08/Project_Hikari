@@ -10,9 +10,9 @@ void motorInit(void)
 
 #ifdef USE_8701E
     pwm_init(Motor_PWM0, motorPWMfreq, 0);
-    gpio_mode(Motor_Dir0, GPO_PP);
+    gpio_mode(Motor_DIR0_Pin, GPO_PP);
     pwm_init(Motor_PWM1, motorPWMfreq, 0);
-    gpio_mode(Motor_Dir1, GPO_PP);
+    gpio_mode(Motor_DIR1_Pin, GPO_PP);
 #endif
 #ifdef USE_4082
     pwm_init(Motor_PWM0A, motorPWMfreq, 0);
@@ -22,11 +22,11 @@ void motorInit(void)
 #endif
 #ifdef USE_298N
     pwm_init(Motor_PWM0, motorPWMfreq, 0);
-    gpio_mode(Motor_Dir0A, GPO_PP);
-    gpio_mode(Motor_Dir0B, GPO_PP);
+    gpio_mode(Motor_DIR0A_Pin, GPO_PP);
+    gpio_mode(Motor_DIR0B_Pin, GPO_PP);
     pwm_init(Motor_PWM1, motorPWMfreq, 0);
-    gpio_mode(Motor_Dir1A, GPO_PP);
-    gpio_mode(Motor_Dir1B, GPO_PP);
+    gpio_mode(Motor_DIR1A_Pin, GPO_PP);
+    gpio_mode(Motor_DIR1B_Pin, GPO_PP);
 #endif
 }
 // 占空比输入的电机直接控制

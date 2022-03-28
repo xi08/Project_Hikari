@@ -16,6 +16,10 @@ typedef enum
 } keyState_enum;
 // 状态枚举
 extern volatile keyState_enum keyState[keyNum];
+#ifdef KEY_EXT_Matrix
+// 按键状态初始化
+void keyInit(void);
+#endif
 // 按键状态更新
 void updateKey(void);
 // 按键处理程序

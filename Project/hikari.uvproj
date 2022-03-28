@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define>USE_8701E</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph</IncludePath>
+              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph;..\LibV2\STC_Core;..\LibV2\STC_Periph;..\LibV2\Devices</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -530,6 +530,59 @@
               <FilePath>..\Periph\TFT18.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>LibV2</GroupName>
+          <Files>
+            <File>
+              <FileName>al_stc16x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LibV2\STC_Periph\al_stc16x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LibV2\STC_Periph\al_stc16x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LibV2\STC_Periph\al_stc16x_tim.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CoreV2</GroupName>
+          <Files>
+            <File>
+              <FileName>STC16_MDU32_V10.LIB</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\LibV2\STC_Core\STC16_MDU32_V10.LIB</FilePath>
+            </File>
+            <File>
+              <FileName>stc16f.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LibV2\STC_Core\stc16f.h</FilePath>
+            </File>
+            <File>
+              <FileName>al_stdint.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LibV2\STC_Core\al_stdint.h</FilePath>
+            </File>
+            <File>
+              <FileName>STC_DFP.LIB</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\LibV2\STC_Core\STC_DFP.LIB</FilePath>
+            </File>
+            <File>
+              <FileName>STC16_FPMU_V10.LIB</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\LibV2\STC_Core\STC16_FPMU_V10.LIB</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>PeriphV2</GroupName>
         </Group>
       </Groups>
     </Target>
