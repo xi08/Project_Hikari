@@ -27,12 +27,9 @@ typedef enum
 typedef enum
 {
     TIM_Mode_A16, // 16位自动重载
-    TIM_Mode_N16, // 16位手动重载
-    TIM_Mode_A08, // 8位自动重载
     TIM_Mode_CNT, // 外部计数
 } TIM_Mode_enum;
-#define IS_TIM_Mode(MODE) ((MODE == TIM_Mode_A16) || (MODE == TIM_Mode_N16) || \
-                           (MODE == TIM_Mode_A08) || (MODE == TIM_Mode_CNT))
+#define IS_TIM_Mode(MODE) ((MODE == TIM_Mode_A16) || (MODE == TIM_Mode_CNT))
 /**
  * @brief 定时器分频系数枚举
  *
@@ -61,7 +58,5 @@ void TIM_DeInit(TIM_enum TIMx);
 void TIM0_NoMaskModeInit(TIM_ClockDivision_enum TIM_CLKDIV);
 
 void TIM_ClockOutputConfig(TIM_enum TIMx, BOOL funcStatus);
-
-
 
 #endif
