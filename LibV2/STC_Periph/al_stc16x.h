@@ -59,14 +59,29 @@ typedef volatile const uint16_t vuc16; /* 只读 */
 typedef volatile const uint8_t vuc8;   /* 只读 */
 
 /**
- * @brief 
+ * @brief
  *
  */
 typedef bit BOOL;
-#define ENABLE 1
-#define SET 1
-#define DISABLE 0
-#define RESET 0
 
+/**
+ * @brief
+ *
+ */
+typedef enum
+{
+    RESET = 0,
+    SET = !RESET
+} flagType;
+
+/**
+ * @brief
+ *
+ */
+typedef enum
+{
+    DISABLE = 0,
+    ENABLE = !DISABLE
+} funcType;
 
 #endif

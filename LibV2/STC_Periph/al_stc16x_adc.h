@@ -99,4 +99,10 @@ void ADC_Init(ADC_InitTypeDef *initStruct);
 
 uint16_t ADC_SingleConj(ADC_Channel_enum ADC_Channel);
 
+void ADC_SoftwareStartConv(ADC_Channel_enum ADC_Channel);
+
+uint16_t ADC_GetConversionValue(void);
+
+flagType ADC_GetFlagStatus(uint8_t ADC_FLAG);
+
 #endif
