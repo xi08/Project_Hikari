@@ -20,26 +20,48 @@ typedef enum
 #define IS_TIM_Periph(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1) || \
                                ((PERIPH) == TIM2) || ((PERIPH) == TIM3) || \
                                ((PERIPH) == TIM4))
+
+#define IS_TIM_PeriphList1(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1) || \
+                                    ((PERIPH) == TIM2) || ((PERIPH) == TIM3) || \
+                                    ((PERIPH) == TIM4))
+
+#define IS_TIM_PeriphList2(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1))
+
+#define IS_TIM_PeriphList3(PERIPH) (((PERIPH) == TIM0))
 /**
  * @brief 定时器基础功能枚举
  *
  */
 typedef enum
 {
-    TIM_Mode_A16, // 16位自动重载
-    TIM_Mode_CNT, // 外部计数
+    TIM_Mode_16AR = 0, // 16位自动重载
+    TIM_Mode_16,       // 16位软件重载
+    TIM_Mode_8AR,      // 8位自动重载
+    TIM_Mode_16NR,     // 16位不可屏蔽自动重载
 } TIM_Mode_enum;
-#define IS_TIM_Mode(MODE) ((MODE == TIM_Mode_A16) || (MODE == TIM_Mode_CNT))
+#define IS_TIM_Mode(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
+                           (MODE == TIM_Mode_8AR) || (MODE == TIM_Mode_16NR))
+
+#define IS_TIM_ModeList1(MODE) ((MODE == TIM_Mode_16AR))
+
+#define IS_TIM_ModeList2(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
+                                (MODE == TIM_Mode_8AR))
+
+#define IS_TIM_ModeList3(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
+                                (MODE == TIM_Mode_8AR) || (MODE == TIM_Mode_16NR))
 /**
- * @brief 定时器分频系数枚举
+ * @brief 定时器时钟源枚举
  *
  */
 typedef enum
 {
-    TIM_CKD_DIV1,  // 主时钟1分频
-    TIM_CKD_DIV12, // 主时钟12分频
-} TIM_ClockDivision_enum;
-#define IS_TIM_ClkDiv(DIV) ((DIV == TIM_CKD_DIV1) || (DIV == TIM_CKD_DIV12))
+    TIM_ClkSrc_DIV1 = 0, // 主时钟, 1分频
+    TIM_ClkSrc_DIV12,    // 主时钟, 12分频
+    TIM_ClkSrc_EXT,      // 外部时钟源
+
+} TIM_ClockSource_enum;
+#define IS_TIM_ClkSrc(DIV) ((DIV == TIM_ClkSrc_DIV1) || (DIV == TIM_ClkSrc_DIV12) || \
+                            (DIV == TIM_ClkSrc_EXT))
 
 /**
  * @brief 定时器初始化结构体
@@ -48,14 +70,14 @@ typedef enum
 typedef struct
 {
     TIM_Mode_enum TIM_Mode;
-    TIM_ClockDivision_enum TIM_CKD_DIVx;
+    TIM_ClockSource_enum TIM_ClockSource;
 } TIM_InitTypeDef;
-
-void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
 
 void TIM_DeInit(TIM_enum TIMx);
 
-void TIM0_NoMaskModeInit(TIM_ClockDivision_enum TIM_CLKDIV);
+void TIM_BaseInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
+
+void TIM_AdvInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
 
 void TIM_ClockOutputConfig(TIM_enum TIMx, BOOL funcStatus);
 

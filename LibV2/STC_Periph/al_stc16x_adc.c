@@ -7,7 +7,7 @@
  *
  * @param initStruct 初始化结构体
  */
-void ADC_Init(ADC_InitTypeDef *initStruct)
+void ADC_Init1(ADC_InitTypeDef *initStruct)
 {
     /* 检查参数合法性 */
     al_assert(IS_ADC_ChannelEXT(initStruct->ADC_Channel));
@@ -42,6 +42,6 @@ uint16_t ADC_SingleConv(ADC_Channel_enum ADC_Channel)
     ADC_CONTR |= (1 << 6);          // 启动转换
     while (!(ADC_CONTR & (1 << 5))) // 查询 ADC 完成标志
         ;
-    ADC_CONTR &= ~0x20;             // 清除完成标志
-    return ADC_RES << 8 + ADC_RESL; // 返回转换结果
+    ADC_CONTR &= ~0x20;               // 清除完成标志
+    return (ADC_RES << 8 + ADC_RESL); // 返回转换结果
 }

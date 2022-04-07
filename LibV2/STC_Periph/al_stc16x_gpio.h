@@ -21,9 +21,9 @@ typedef enum
     GPIO7,
 } GPIO_enum;
 #define IS_GPIO_Periph(PERIPH) (((PERIPH) == GPIO0) || ((PERIPH) == GPIO1) || \
-                            ((PERIPH) == GPIO2) || ((PERIPH) == GPIO3) || \
-                            ((PERIPH) == GPIO4) || ((PERIPH) == GPIO5) || \
-                            ((PERIPH) == GPIO6) || ((PERIPH) == GPIO7))
+                                ((PERIPH) == GPIO2) || ((PERIPH) == GPIO3) || \
+                                ((PERIPH) == GPIO4) || ((PERIPH) == GPIO5) || \
+                                ((PERIPH) == GPIO6) || ((PERIPH) == GPIO7))
 /**
  * @brief GPIO引脚
  *

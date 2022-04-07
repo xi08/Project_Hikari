@@ -59,13 +59,13 @@ typedef volatile const uint16_t vuc16; /* 只读 */
 typedef volatile const uint8_t vuc8;   /* 只读 */
 
 /**
- * @brief
+ * @brief 布尔类型定义
  *
  */
 typedef bit BOOL;
 
 /**
- * @brief
+ * @brief 标志位
  *
  */
 typedef enum
@@ -75,7 +75,7 @@ typedef enum
 } flagStatus;
 
 /**
- * @brief
+ * @brief 状态位
  *
  */
 typedef enum
@@ -84,4 +84,13 @@ typedef enum
     ENABLE = !DISABLE
 } funcStatus;
 
+/**
+ * @brief 操作状态
+ * 
+ */
+typedef enum
+{
+    SUCCESS = 0,
+    FAILURE = !SUCCESS
+} opStatus;
 #endif

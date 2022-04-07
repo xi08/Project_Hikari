@@ -180,9 +180,9 @@ void GPIO_Init(GPIO_enum GPIOx, GPIO_InitTypeDef *initStruct)
 }
 
 /**
- * @brief 恢复整组GPIO初始值
+ * @brief 反初始化GPIO组
  *
- * @param GPIOx 需要恢复的GPIO组
+ * @param GPIOx 需要反初始化的GPIO组
  */
 void GPIO_DeInit(GPIO_enum GPIOx)
 {

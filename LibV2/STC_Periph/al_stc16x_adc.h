@@ -95,7 +95,7 @@ typedef struct
     ADC_DataAlign_enum ADC_DataAlign;
 } ADC_InitTypeDef;
 
-void ADC_Init(ADC_InitTypeDef *initStruct);
+void ADC_Init1(ADC_InitTypeDef *initStruct);
 
 uint16_t ADC_SingleConv(ADC_Channel_enum ADC_Channel);
 
