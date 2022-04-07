@@ -72,7 +72,7 @@ typedef enum
 {
     RESET = 0,
     SET = !RESET
-} flagType;
+} flagStatus;
 
 /**
  * @brief
@@ -82,6 +82,6 @@ typedef enum
 {
     DISABLE = 0,
     ENABLE = !DISABLE
-} funcType;
+} funcStatus;
 
 #endif

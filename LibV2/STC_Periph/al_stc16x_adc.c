@@ -35,7 +35,7 @@ void ADC_Init(ADC_InitTypeDef *initStruct)
  * @param ADC_Channel 需要转换的ADC通道
  * @return uint16_t 转换结果 (RES在前，RESL在后)
  */
-uint16_t ADC_SingleConj(ADC_Channel_enum ADC_Channel)
+uint16_t ADC_SingleConv(ADC_Channel_enum ADC_Channel)
 {
     ADC_CONTR &= (0xF0);            // 清除ADC通道
     ADC_CONTR |= ADC_Channel;       // 设置ADC通道
