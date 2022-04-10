@@ -21,13 +21,13 @@ typedef enum
                                ((PERIPH) == TIM2) || ((PERIPH) == TIM3) || \
                                ((PERIPH) == TIM4))
 
-#define IS_TIM_PeriphList1(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1) || \
-                                    ((PERIPH) == TIM2) || ((PERIPH) == TIM3) || \
-                                    ((PERIPH) == TIM4))
+#define IS_TIM_PeriphBase(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1) || \
+                                   ((PERIPH) == TIM2) || ((PERIPH) == TIM3) || \
+                                   ((PERIPH) == TIM4))
 
-#define IS_TIM_PeriphList2(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1))
+#define IS_TIM_PeriphAdv(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1))
 
-#define IS_TIM_PeriphList3(PERIPH) (((PERIPH) == TIM0))
+#define IS_TIM_PeriphFull(PERIPH) (((PERIPH) == TIM0))
 /**
  * @brief 定时器基础功能枚举
  *
@@ -42,13 +42,14 @@ typedef enum
 #define IS_TIM_Mode(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
                            (MODE == TIM_Mode_8AR) || (MODE == TIM_Mode_16NR))
 
-#define IS_TIM_ModeList1(MODE) ((MODE == TIM_Mode_16AR))
+#define IS_TIM_FullMode(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
+                               (MODE == TIM_Mode_8AR) || (MODE == TIM_Mode_16NR))
 
-#define IS_TIM_ModeList2(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
-                                (MODE == TIM_Mode_8AR))
+#define IS_TIM_BaseMode(MODE) ((MODE == TIM_Mode_16AR))
 
-#define IS_TIM_ModeList3(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
-                                (MODE == TIM_Mode_8AR) || (MODE == TIM_Mode_16NR))
+#define IS_TIM_AdvMode(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
+                              (MODE == TIM_Mode_8AR))
+
 /**
  * @brief 定时器时钟源枚举
  *
@@ -71,14 +72,22 @@ typedef struct
 {
     TIM_Mode_enum TIM_Mode;
     TIM_ClockSource_enum TIM_ClockSource;
+    uint16_t TIM_AutoReloadValue;
+
 } TIM_InitTypeDef;
 
 void TIM_DeInit(TIM_enum TIMx);
+
+void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
 
 void TIM_BaseInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
 
 void TIM_AdvInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
 
-void TIM_ClockOutputConfig(TIM_enum TIMx, BOOL funcStatus);
+void TIM_FullInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
+
+void TIM_ClockOutputConfig(TIM_enum TIMx, statusType status);
+
+void TIM_ITConfig(TIM_enum TIMx, statusType status);
 
 #endif

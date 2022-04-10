@@ -58,39 +58,19 @@ typedef volatile const uint32_t vuc32; /* 只读 */
 typedef volatile const uint16_t vuc16; /* 只读 */
 typedef volatile const uint8_t vuc8;   /* 只读 */
 
-/**
- * @brief 布尔类型定义
- *
- */
+// 布尔
 typedef bit BOOL;
 
-/**
- * @brief 标志位
- *
- */
-typedef enum
-{
-    RESET = 0,
-    SET = !RESET
-} flagStatus;
+// 标志位
+typedef bit flagType;
+#define RESET (flagType)0
+#define SET !(RESET)
 
-/**
- * @brief 状态位
- *
- */
-typedef enum
-{
-    DISABLE = 0,
-    ENABLE = !DISABLE
-} funcStatus;
+// 状态位
+typedef bit statusType;
+#define DISABLE (statusType)0
+#define ENABLE !(DISABLE)
+#define SUCCESS (statusType)0
+#define FAILURE !(SUCCESS)
 
-/**
- * @brief 操作状态
- * 
- */
-typedef enum
-{
-    SUCCESS = 0,
-    FAILURE = !SUCCESS
-} opStatus;
 #endif
