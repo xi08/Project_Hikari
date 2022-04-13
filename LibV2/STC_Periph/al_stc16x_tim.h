@@ -28,6 +28,9 @@ typedef enum
 #define IS_TIM_PeriphAdv(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1))
 
 #define IS_TIM_PeriphFull(PERIPH) (((PERIPH) == TIM0))
+
+#define IS_TIM_PeriphMultiMode(PERIPH) (((PERIPH) == TIM0) || ((PERIPH) == TIM1))
+
 /**
  * @brief 定时器基础功能枚举
  *
@@ -42,12 +45,12 @@ typedef enum
 #define IS_TIM_Mode(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
                            (MODE == TIM_Mode_8AR) || (MODE == TIM_Mode_16NR))
 
-#define IS_TIM_FullMode(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
+#define IS_TIM_ModeFull(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
                                (MODE == TIM_Mode_8AR) || (MODE == TIM_Mode_16NR))
 
-#define IS_TIM_BaseMode(MODE) ((MODE == TIM_Mode_16AR))
+#define IS_TIM_ModeBase(MODE) ((MODE == TIM_Mode_16AR))
 
-#define IS_TIM_AdvMode(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
+#define IS_TIM_ModeAdv(MODE) ((MODE == TIM_Mode_16AR) || (MODE == TIM_Mode_16) || \
                               (MODE == TIM_Mode_8AR))
 
 /**
@@ -61,8 +64,12 @@ typedef enum
     TIM_ClkSrc_EXT,      // 外部时钟源
 
 } TIM_ClockSource_enum;
-#define IS_TIM_ClkSrc(DIV) ((DIV == TIM_ClkSrc_DIV1) || (DIV == TIM_ClkSrc_DIV12) || \
-                            (DIV == TIM_ClkSrc_EXT))
+#define IS_TIM_ClkSrc(SRC) ((SRC == TIM_ClkSrc_DIV1) || (SRC == TIM_ClkSrc_DIV12) || \
+                            (SRC == TIM_ClkSrc_EXT))
+
+#define IS_TIM_TimerClk(SRC) ((SRC == TIM_ClkSrc_DIV1) || (SRC == TIM_ClkSrc_DIV12))
+
+#define IS_TIM_CounterClk(SRC) (SRC == TIM_ClkSrc_EXT)
 
 /**
  * @brief 定时器初始化结构体
@@ -80,14 +87,33 @@ void TIM_DeInit(TIM_enum TIMx);
 
 void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
 
-void TIM_BaseInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
+void TIM_Cmd(TIM_enum TIMx, statusType newStatus);
 
-void TIM_AdvInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
+void TIM_ClockOutputConfig(TIM_enum TIMx, statusType newStatus);
 
-void TIM_FullInit(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
+void TIM_IRQConfig(TIM_enum TIMx, statusType newStatus);
 
-void TIM_ClockOutputConfig(TIM_enum TIMx, statusType status);
+void TIM_ModeConfig(TIM_enum TIMx, TIM_Mode_enum newMode);
 
-void TIM_ITConfig(TIM_enum TIMx, statusType status);
+void TIM_ClkSrcConfig(TIM_enum TIMx, TIM_ClockSource_enum newSrc);
+
+void TIM_SetAutoReload(TIM_enum TIMx, uint16_t newVal);
+
+void TIM_SetCounter(TIM_enum TIMx, uint16_t newVal);
+
+uint16_t TIM_GetCounter(TIM_enum TIMx);
+
+flagType TIM_GetFlagStatus(TIM_enum TIMx, uint16_t TIM_FLAG);
+
+void TIM_ClearFlag(TIM_enum TIMx, uint16_t TIM_FLAG);
+
+void TIM_SetVal(TIM_enum TIMx, uint16_t newVal);
+
+uint16_t TIM_GetVal(TIM_enum TIMx);
+
+// 快速
+
+
+
 
 #endif

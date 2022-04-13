@@ -5,6 +5,7 @@
 
 #include "stc16f.h"
 #include "al_stdint.h"
+#include <intrins.h>
 
 /**
  * @brief 断言
@@ -72,5 +73,10 @@ typedef bit statusType;
 #define ENABLE !(DISABLE)
 #define SUCCESS (statusType)0
 #define FAILURE !(SUCCESS)
+
+#define bitAction_Set(bitVar, bitPos) bitVar |= (1 << bitPos)
+#define bitAction_Clr(bitVar, bitPos) bitVar &= ~(1 << bitPos)
+#define bitAction_Rev(bitVar, bitPos) bitVar ^= (1 << bitPos)
+#define bitAction_Get(bitVar, bitPos) (bitVar & (1 << bitPos))
 
 #endif
