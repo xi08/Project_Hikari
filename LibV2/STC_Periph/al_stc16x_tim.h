@@ -67,10 +67,6 @@ typedef enum
 #define IS_TIM_ClkSrc(SRC) ((SRC == TIM_ClkSrc_DIV1) || (SRC == TIM_ClkSrc_DIV12) || \
                             (SRC == TIM_ClkSrc_EXT))
 
-#define IS_TIM_TimerClk(SRC) ((SRC == TIM_ClkSrc_DIV1) || (SRC == TIM_ClkSrc_DIV12))
-
-#define IS_TIM_CounterClk(SRC) (SRC == TIM_ClkSrc_EXT)
-
 /**
  * @brief 定时器初始化结构体
  *

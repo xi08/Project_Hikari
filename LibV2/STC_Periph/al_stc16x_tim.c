@@ -788,6 +788,40 @@ uint16_t TIM_GetVal(TIM_enum TIMx)
     }
 }
 
+/**
+ * @brief 设置定时器重装载值
+ *
+ * @param TIMx 目标定时器
+ * @param newVal 新重装载值
+ */
+void TIM_SetAutoReload(TIM_enum TIMx, uint16_t newVal)
+{
+
+    TIM_SetVal(TIMx, newVal);
+}
+
+/**
+ * @brief 设置定时器外部计数值
+ *
+ * @param TIMx 目标定时器
+ * @param newVal 新计数值
+ */
+void TIM_SetCounter(TIM_enum TIMx, uint16_t newVal)
+{
+    TIM_SetVal(TIMx, newVal);
+}
+
+/**
+ * @brief 获取定时器外部计数值
+ *
+ * @param TIMx 目标定时器
+ * @return uint16_t 外部脉冲数
+ */
+uint16_t TIM_GetCounter(TIM_enum TIMx)
+{
+    return TIM_GetVal(TIMx);
+}
+
 // 快速操作
 
 #define TIM_QUICK_OP
