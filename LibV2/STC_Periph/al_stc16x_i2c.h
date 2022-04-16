@@ -6,6 +6,10 @@
 #include "al_stc16x.h"
 #ifdef USE_AltLib
 
+/**
+ * @brief 
+ * 
+ */
 typedef enum
 {
     I2C_Port0 = 0, // SCL=P15, SDA=P14
@@ -16,6 +20,10 @@ typedef enum
                            ((PORT) == I2C_Port1) || \
                            ((PORT) == I2C_Port3))
 
+/**
+ * @brief 
+ * 
+ */
 typedef enum
 {
     I2C_Mode_Master,
@@ -28,6 +36,9 @@ typedef enum
 
 void I2C_Init();
 void I2C_DeInit();
+
+void I2C_ClockConfig();
+void I2C_PortConfig();
 
 void I2C_ReceiveByte();
 void I2C_SendByte();

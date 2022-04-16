@@ -26,6 +26,10 @@ void assert_failed(uint8_t *file, uint32_t line);
 #define al_assert(expr) ((void)0)
 #endif
 
+// 扩展特殊功能寄存器访问
+#define EnableXFR() P_SW2 |= 0x80
+#define DisableXFR() P_SW2 &= ~0x80
+
 // 兼容性类型定义
 typedef int32_t s32;
 typedef int16_t s16;
@@ -78,6 +82,7 @@ typedef bit statusType;
 #define bitAction_Clr(bitVar, bitPos) bitVar &= ~(1 << bitPos)
 #define bitAction_Rev(bitVar, bitPos) bitVar ^= (1 << bitPos)
 #define bitAction_Get(bitVar, bitPos) (bitVar & (1 << bitPos))
+
 
 #endif
 #endif

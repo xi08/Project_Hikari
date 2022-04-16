@@ -76,7 +76,7 @@ typedef enum
     TIM_ClkSrc_DIV12,    // 主时钟, 12分频
     TIM_ClkSrc_EXT,      // 外部时钟源
 
-} TIM_ClockSource_enum;
+} TIM_ClkSrc_enum;
 #define IS_TIM_ClkSrc(SRC) (((SRC) == TIM_ClkSrc_DIV1) ||  \
                             ((SRC) == TIM_ClkSrc_DIV12) || \
                             ((SRC) == TIM_ClkSrc_EXT))
@@ -85,14 +85,14 @@ typedef enum
  * @brief 定时器中断触发源
  *
  */
-#define TIM_IT_Update ((uint8_t)0x01) // 定时器更新中断
+#define TIM_IT_Update ((uint8_t)0x01) // 定时器更新
 #define IS_TIM_IT(SRC) ((SRC) != (uint8_t)0x00)
 
 /**
- * @brief 定时器标记位置位触发源
+ * @brief 定时器状态置位触发源
  *
  */
-#define TIM_FLAG_Update ((uint8_t)0x01) // 定时器更新标记
+#define TIM_FLAG_Update ((uint8_t)0x01) // 定时器更新
 #define IS_TIM_FLAG(SRC) ((SRC) != (uint8_t)0x00)
 
 /**
@@ -102,7 +102,7 @@ typedef enum
 typedef struct
 {
     TIM_Mode_enum TIM_Mode;
-    TIM_ClockSource_enum TIM_ClockSource;
+    TIM_ClkSrc_enum TIM_ClockSource;
     uint16_t TIM_AutoReloadValue;
 
 } TIM_InitTypeDef;
@@ -113,7 +113,7 @@ void TIM_Cmd(TIM_enum TIMx, statusType newStatus);
 
 void TIM_ClockOutputConfig(TIM_enum TIMx, statusType newStatus);
 void TIM_ModeConfig(TIM_enum TIMx, TIM_Mode_enum newMode);
-void TIM_ClkSrcConfig(TIM_enum TIMx, TIM_ClockSource_enum newSrc);
+void TIM_ClockSourceConfig(TIM_enum TIMx, TIM_ClkSrc_enum newSrc);
 
 void TIM_SetVal(TIM_enum TIMx, uint16_t newVal);
 void TIM_SetAutoReload(TIM_enum TIMx, uint16_t newVal);

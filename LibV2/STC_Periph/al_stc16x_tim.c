@@ -553,9 +553,9 @@ void TIM_ModeConfig(TIM_enum TIMx, TIM_Mode_enum newMode)
  * @brief 定时器时钟源配置
  *
  * @param TIMx 目标定时器
- * @param newSrc 新工作状态
+ * @param newSrc 新时钟源
  */
-void TIM_ClkSrcConfig(TIM_enum TIMx, TIM_ClockSource_enum newSrc)
+void TIM_ClockSourceConfig(TIM_enum TIMx, TIM_ClkSrc_enum newSrc)
 {
     /* 检查参数合法性 */
     al_assert(IS_TIM_Periph(TIMx));
@@ -853,10 +853,10 @@ uint16_t TIM_GetCounter(TIM_enum TIMx)
 }
 
 /**
- * @brief 定时器标记位配置
+ * @brief 定时器状态位配置
  *
  * @param TIMx 目标定时器
- * @param TIM_FLAG 标记位的置位触发来源
+ * @param TIM_FLAG 状态置位触发来源
  * @param newStatus 功能状态: 开启/关闭
  */
 void TIM_FlagConfig(TIM_enum TIMx, uint16_t TIM_FLAG, statusType newStatus)
@@ -864,21 +864,21 @@ void TIM_FlagConfig(TIM_enum TIMx, uint16_t TIM_FLAG, statusType newStatus)
 }
 
 /**
- * @brief 获取定时器标记位
+ * @brief 获取定时器状态位
  *
  * @param TIMx 目标定时器
- * @param TIM_FLAG 标记位的置位触发来源
- * @return flagType 标记位的置位信息
+ * @param TIM_FLAG 状态置位触发来源
+ * @return flagType 状态置位信息
  */
 flagType TIM_GetFlagStatus(TIM_enum TIMx, uint16_t TIM_FLAG)
 {
 }
 
 /**
- * @brief 清除定时器标记位
+ * @brief 清除定时器状态位
  *
  * @param TIMx 目标定时器
- * @param TIM_FLAG 标记位的置位触发来源
+ * @param TIM_FLAG 状态置位触发来源
  */
 void TIM_ClearFlag(TIM_enum TIMx, uint16_t TIM_FLAG)
 {
