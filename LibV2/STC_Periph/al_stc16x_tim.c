@@ -1,6 +1,7 @@
 // code = utf-8
 
 #include "al_stc16x_tim.h"
+#ifdef USE_AltLib
 
 /**
  * @brief 将定时器恢复初始值
@@ -366,59 +367,88 @@ void TIM_ClockOutputConfig(TIM_enum TIMx, statusType newStatus)
  * @brief 定时器中断功能配置
  *
  * @param TIMx 目标定时器
+ * @param TIM_IT 中断的触发来源
  * @param newStatus 功能状态: 开启/关闭
  */
-void TIM_IRQConfig(TIM_enum TIMx, statusType newStatus)
+void TIM_ITConfig(TIM_enum TIMx, uint16_t TIM_IT, statusType newStatus)
 {
     /* 检查参数合法性 */
     al_assert(IS_TIM_Periph(TIMx));
-
+    al_assert(IS_TIM_IT(TIM_IT));
     /* 设置参数 */
-    switch (TIMx)
+    switch (TIM_IT)
     {
-    case TIM0: // TIM0
-    {
-        if (newStatus)
-            ET0 = 1; // 设置控制位
-        else
-            ET0 = 0; // 清除控制位
+    case TIM_IT_Update: // 定时器更新中断
+        switch (TIMx)
+        {
+        case TIM0: // TIM0
+        {
+            if (newStatus)
+                ET0 = 1; // 设置控制位
+            else
+                ET0 = 0; // 清除控制位
+            break;
+        }
+        case TIM1: // TIM1
+        {
+            if (newStatus)
+                ET1 = 1; // 设置控制位
+            else
+                ET1 = 0; // 清除控制位
+            break;
+        }
+        case TIM2: // TIM2
+        {
+            if (newStatus)
+                IE2 |= (1 << 2); // 设置控制位
+            else
+                IE2 &= ~(1 << 2); // 清除控制位
+            break;
+        }
+        case TIM3: // TIM3
+        {
+            if (newStatus)
+                IE2 |= (1 << 5); // 设置控制位
+            else
+                IE2 &= ~(1 << 5); // 清除控制位
+            break;
+        }
+        case TIM4: // TIM4
+        {
+            if (newStatus)
+                IE2 |= (1 << 6); // 设置控制位
+            else
+                IE2 &= ~(1 << 6); // 清除控制位
+            break;
+        }
+        default:
+            break;
+        }
         break;
-    }
-    case TIM1: // TIM1
-    {
-        if (newStatus)
-            ET1 = 1; // 设置控制位
-        else
-            ET1 = 0; // 清除控制位
-        break;
-    }
-    case TIM2: // TIM2
-    {
-        if (newStatus)
-            IE2 |= (1 << 2); // 设置控制位
-        else
-            IE2 &= ~(1 << 2); // 清除控制位
-        break;
-    }
-    case TIM3: // TIM3
-    {
-        if (newStatus)
-            IE2 |= (1 << 5); // 设置控制位
-        else
-            IE2 &= ~(1 << 5); // 清除控制位
-        break;
-    }
-    case TIM4: // TIM4
-    {
-        if (newStatus)
-            IE2 |= (1 << 6); // 设置控制位
-        else
-            IE2 &= ~(1 << 6); // 清除控制位
-        break;
-    }
     default:
         break;
     }
+}
+
+/**
+ * @brief 获取定时器中断标记
+ *
+ * @param TIMx 目标定时器
+ * @param TIM_IT 中断的触发来源
+ * @return flagType 中断标记的置位信息
+ */
+flagType TIM_GetITStatus(TIM_enum TIMx, uint16_t TIM_IT)
+{
+}
+
+/**
+ * @brief 清除定时器中断标记
+ *
+ * @param TIMx 目标定时器
+ * @param TIM_IT 中断的触发来源
+ */
+void TIM_ClearITPendingBit(TIM_enum TIMx, uint16_t TIM_IT)
+{
 }
 
 /**
@@ -822,12 +852,40 @@ uint16_t TIM_GetCounter(TIM_enum TIMx)
     return TIM_GetVal(TIMx);
 }
 
-// 快速操作
-
-#define TIM_QUICK_OP
+/**
+ * @brief 定时器标记位配置
+ *
+ * @param TIMx 目标定时器
+ * @param TIM_FLAG 标记位的置位触发来源
+ * @param newStatus 功能状态: 开启/关闭
+ */
+void TIM_FlagConfig(TIM_enum TIMx, uint16_t TIM_FLAG, statusType newStatus)
+{
+}
 
 /**
- * @brief 快速初始化定时器定时中断功能，(触发周期T) = 12*(65536-自动重装载值autoReloadValue)/系统频率SystemClock
+ * @brief 获取定时器标记位
+ *
+ * @param TIMx 目标定时器
+ * @param TIM_FLAG 标记位的置位触发来源
+ * @return flagType 标记位的置位信息
+ */
+flagType TIM_GetFlagStatus(TIM_enum TIMx, uint16_t TIM_FLAG)
+{
+}
+
+/**
+ * @brief 清除定时器标记位
+ *
+ * @param TIMx 目标定时器
+ * @param TIM_FLAG 标记位的置位触发来源
+ */
+void TIM_ClearFlag(TIM_enum TIMx, uint16_t TIM_FLAG)
+{
+}
+
+/**
+ * @brief 初始化定时器定时中断功能，(触发周期T) = 12*(65536-自动重装载值autoReloadValue)/系统频率SystemClock
  *
  *
  * @param TIMx 目标定时器
@@ -892,7 +950,7 @@ void TIM_PIT_Init(TIM_enum TIMx, uint16_t autoReloadValue)
 }
 
 /**
- * @brief 快速初始化定时器外部计数功能
+ * @brief 初始化定时器外部计数功能
  *
  * @param TIMx 目标定时器
  */
@@ -955,7 +1013,7 @@ void TIM_CNT_Init(TIM_enum TIMx)
 }
 
 /**
- * @brief  快速获取并清空定时器外部计数值
+ * @brief 获取并清空定时器外部计数值
  *
  * @param TIMx 目标定时器
  * @return uint16_t 计数值
@@ -1027,3 +1085,5 @@ uint16_t TIM_CNT_GetVal(TIM_enum TIMx)
     /* 返回计数值 */
     return timVal;
 }
+
+#endif

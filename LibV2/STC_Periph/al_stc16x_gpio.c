@@ -1,7 +1,7 @@
 // code = utf-8
 
 #include "al_stc16x_gpio.h"
-
+#ifdef USE_AltLib
 /**
  * @brief 用给定参数初始化GPIO引脚
  *
@@ -771,3 +771,5 @@ void GPIO_Write(GPIO_enum GPIOx, uint8_t Val)
         break;
     }
 }
+
+#endif

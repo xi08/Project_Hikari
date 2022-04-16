@@ -1,18 +1,21 @@
 // code = utf-8
+#pragma warning disable = 38
 
 #ifndef __al_stc16x_h
 #define __al_stc16x_h
+
+#ifdef USE_AltLib
+
+#define __altLib__ 2204
+#define __altLib_Platform__ "stc16"
 
 #include "stc16f.h"
 #include "al_stdint.h"
 #include <intrins.h>
 
-/**
- * @brief 断言
- *
- */
+// 断言
 #ifndef _ReleaseVersion
-#ifdef USE_SELF_ASSERT
+#ifdef altLib_UseSelfAssertResponded
 #define al_assert(expr) ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__, __LINE__))
 void assert_failed(uint8_t *file, uint32_t line);
 #else
@@ -23,10 +26,7 @@ void assert_failed(uint8_t *file, uint32_t line);
 #define al_assert(expr) ((void)0)
 #endif
 
-/**
- * @brief 兼容性类型定义
- *
- */
+// 兼容性类型定义
 typedef int32_t s32;
 typedef int16_t s16;
 typedef int8_t s8;
@@ -79,4 +79,5 @@ typedef bit statusType;
 #define bitAction_Rev(bitVar, bitPos) bitVar ^= (1 << bitPos)
 #define bitAction_Get(bitVar, bitPos) (bitVar & (1 << bitPos))
 
+#endif
 #endif

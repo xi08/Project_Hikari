@@ -549,6 +549,11 @@
               <FileType>1</FileType>
               <FilePath>..\LibV2\STC_Periph\al_stc16x_tim.c</FilePath>
             </File>
+            <File>
+              <FileName>al_stc16x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LibV2\STC_Periph\al_stc16x_i2c.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

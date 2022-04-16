@@ -1,7 +1,7 @@
 // code = uft-8
 
 #include "al_stc16x_adc.h"
-
+#ifdef USE_AltLib
 /**
  * @brief 用给定参数初始化ADC通道
  *
@@ -45,3 +45,4 @@ uint16_t ADC_SingleConv(ADC_Channel_enum ADC_Channel)
     ADC_CONTR &= ~0x20;               // 清除完成标志
     return (ADC_RES << 8 + ADC_RESL); // 返回转换结果
 }
+#endif
