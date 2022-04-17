@@ -7,22 +7,32 @@
 #ifdef USE_AltLib
 
 /**
- * @brief 
- * 
+ * @brief I2C外设枚举
+ *
  */
 typedef enum
 {
-    I2C_Port0 = 0, // SCL=P15, SDA=P14
-    I2C_Port1 = 1, // SCL=P25, SDA=P24
-    I2C_Port3 = 3, // SCL=P32, SDA=P33
-} I2C_Port_enum;
-#define IS_I2C_Port(PORT) (((PORT) == I2C_Port0) || \
-                           ((PORT) == I2C_Port1) || \
-                           ((PORT) == I2C_Port3))
+    I2C1,
+} I2C_enum;
+#define IS_I2C_Periph(PERIPH) (((PERIPH) == I2C1))
 
 /**
- * @brief 
- * 
+ * @brief I2C外设引脚枚举
+ *
+ */
+typedef enum
+{
+    I2C1_Port0 = 0, // SCL=P15, SDA=P14
+    I2C1_Port1 = 1, // SCL=P25, SDA=P24
+    I2C1_Port3 = 3, // SCL=P32, SDA=P33
+} I2C_Port_enum;
+#define IS_I2C_Port(PORT) (((PORT) == I2C1_Port0) || \
+                           ((PORT) == I2C1_Port1) || \
+                           ((PORT) == I2C1_Port3))
+
+/**
+ * @brief
+ *
  */
 typedef enum
 {
@@ -32,25 +42,51 @@ typedef enum
 #define IS_I2C_Mode(MODE) (((MODE) == I2C_Mode_Master) || \
                            ((PORT) == I2C_Mode_Slave))
 
+/**
+ * @brief
+ *
+ */
+typedef struct
+{
+    I2C_Port_enum I2C_PORTx;
+    I2C_Mode_enum I2C_Mode;
+    uint8_t I2C_ClockSpeed;
+    uint8_t I2C_OwnAddress;
+} I2C_InitTypeDef;
 
+void I2C_Init(I2C_enum I2Cx, I2C_InitTypeDef *initStruct);
+void I2C_DeInit(I2C_enum I2Cx);
 
-void I2C_Init();
-void I2C_DeInit();
+void I2C_PortConfig(I2C_enum I2Cx, I2C_Port_enum newPort);
+void I2C_ModeConfig(I2C_enum I2Cx, I2C_Mode_enum newMode);
+void I2C_ClockConfig(I2C_enum I2Cx, uint8_t newCommSpeed);
+void I2C_AddrConfig(I2C_enum I2Cx, uint8_t newOwnAddr);
 
-void I2C_ClockConfig();
-void I2C_PortConfig();
+void I2C_RecvByte(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t srcRegAddr, uint8_t *dest);
+void I2C_SendByte(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t destRegAddr, uint8_t src);
 
-void I2C_ReceiveByte();
-void I2C_SendByte();
+void I2C_RecvPage(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t srcRegAddr, uint8_t *dest, uint8_t n);
+void I2C_SendPage(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t destRegAddr, uint8_t *src, uint8_t n);
 
-void I2C_CMD_Start();
-void I2C_CMD_Stop();
-void I2C_CMD_ACK();
-void I2C_CMD_NACK();
+void I2C_CMD_SendSTART(I2C_enum I2Cx);
+void I2C_CMD_SendSTOP(I2C_enum I2Cx);
+void I2C_CMD_SendACK(I2C_enum I2Cx);
+void I2C_CMD_SendNACK(I2C_enum I2Cx);
+void I2C_CMD_WaitACK(I2C_enum I2Cx);
+void I2C_CMD_SendData(I2C_enum I2Cx);
+void I2C_CMD_RecvData(I2C_enum I2Cx);
+void I2C_SCMD_FirstSend(I2C_enum I2Cx);
+void I2C_SCMD_SerialSend(I2C_enum I2Cx);
+void I2C_SCMD_SerialRecv(I2C_enum I2Cx);
+void I2C_SCMD_EndRecv(I2C_enum I2Cx);
 
-void I2C_IRQConfig();
-flagType I2C_GetFlagStatus();
-void I2C_ClearFlag();
+void I2C_ITConfig(I2C_enum I2Cx, uint16_t I2C_IT, statusType newStatus);
+flagType I2C_GetITStatus(I2C_enum I2Cx, uint16_t I2C_IT);
+void I2C_ClearITPendingBit(I2C_enum I2Cx, uint16_t I2C_IT);
+
+void I2C_FlagConfig(I2C_enum I2Cx, uint16_t I2C_FLAG, statusType newStatus);
+flagType I2C_GetFlagStatus(I2C_enum I2Cx, uint16_t I2C_FLAG);
+void I2C_ClearFlag(I2C_enum I2Cx, uint16_t I2C_FLAG);
 
 #endif
 #endif
