@@ -31,7 +31,7 @@ typedef enum
                            ((PORT) == I2C1_Port3))
 
 /**
- * @brief
+ * @brief I2C模式枚举
  *
  */
 typedef enum
@@ -43,12 +43,12 @@ typedef enum
                            ((PORT) == I2C_Mode_Slave))
 
 /**
- * @brief
+ * @brief I2C初始化结构体
  *
  */
 typedef struct
 {
-    I2C_Port_enum I2C_PORTx;
+    I2C_Port_enum I2C_PORT;
     I2C_Mode_enum I2C_Mode;
     uint8_t I2C_ClockSpeed;
     uint8_t I2C_OwnAddress;
@@ -56,15 +56,16 @@ typedef struct
 
 void I2C_Init(I2C_enum I2Cx, I2C_InitTypeDef *initStruct);
 void I2C_DeInit(I2C_enum I2Cx);
+void I2C_StructInit(I2C_InitTypeDef *initStruct);
+void I2C_Cmd(I2C_enum I2Cx, statusType newStatus);
 
 void I2C_PortConfig(I2C_enum I2Cx, I2C_Port_enum newPort);
 void I2C_ModeConfig(I2C_enum I2Cx, I2C_Mode_enum newMode);
 void I2C_ClockConfig(I2C_enum I2Cx, uint8_t newCommSpeed);
-void I2C_AddrConfig(I2C_enum I2Cx, uint8_t newOwnAddr);
+void I2C_OwnAddrConfig(I2C_enum I2Cx, uint8_t newOwnAddr);
 
 void I2C_RecvByte(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t srcRegAddr, uint8_t *dest);
 void I2C_SendByte(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t destRegAddr, uint8_t src);
-
 void I2C_RecvPage(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t srcRegAddr, uint8_t *dest, uint8_t n);
 void I2C_SendPage(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t destRegAddr, uint8_t *src, uint8_t n);
 

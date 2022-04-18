@@ -109,6 +109,7 @@ typedef struct
 
 void TIM_DeInit(TIM_enum TIMx);
 void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct);
+void TIM_StructInit(TIM_InitTypeDef *initStruct);
 void TIM_Cmd(TIM_enum TIMx, statusType newStatus);
 
 void TIM_ClockOutputConfig(TIM_enum TIMx, statusType newStatus);
