@@ -50,7 +50,7 @@ typedef struct
 {
     I2C_Port_enum I2C_PORT;
     I2C_Mode_enum I2C_Mode;
-    uint8_t I2C_ClockSpeed;
+    uint8_t I2C_ClockDiv;
     uint8_t I2C_OwnAddress;
 } I2C_InitTypeDef;
 
@@ -61,7 +61,7 @@ void I2C_Cmd(I2C_enum I2Cx, statusType newStatus);
 
 void I2C_PortConfig(I2C_enum I2Cx, I2C_Port_enum newPort);
 void I2C_ModeConfig(I2C_enum I2Cx, I2C_Mode_enum newMode);
-void I2C_ClockConfig(I2C_enum I2Cx, uint8_t newCommSpeed);
+void I2C_ClockConfig(I2C_enum I2Cx, uint8_t newClockDiv);
 void I2C_OwnAddrConfig(I2C_enum I2Cx, uint8_t newOwnAddr);
 
 void I2C_RecvByte(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t srcRegAddr, uint8_t *dest);
@@ -73,7 +73,7 @@ void I2C_CMD_SendSTART(I2C_enum I2Cx);
 void I2C_CMD_SendSTOP(I2C_enum I2Cx);
 void I2C_CMD_SendACK(I2C_enum I2Cx);
 void I2C_CMD_SendNACK(I2C_enum I2Cx);
-void I2C_CMD_WaitACK(I2C_enum I2Cx);
+void I2C_CMD_RecvACK(I2C_enum I2Cx);
 void I2C_CMD_SendData(I2C_enum I2Cx);
 void I2C_CMD_RecvData(I2C_enum I2Cx);
 void I2C_SCMD_FirstSend(I2C_enum I2Cx);
