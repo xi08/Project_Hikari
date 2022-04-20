@@ -12,6 +12,9 @@
 /Objects
 /DebugConfig
 
+# Legacy code file
+*_legacy*
+
 # Binary files
 *.axf
 *.b[0-3][0-9]
@@ -30,6 +33,8 @@
 *._ia
 *.__i
 *._ii
+*.map
+*.lst
 
 # Debugger files
 *.ini
