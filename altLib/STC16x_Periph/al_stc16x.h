@@ -9,7 +9,7 @@
 #define __altLib__ 2204
 #define __altLib_Platform__ "stc16"
 
-#include "stc16.h"
+#include "stc16x.h"
 #include "al_stdint.h"
 #include <intrins.h>
 
