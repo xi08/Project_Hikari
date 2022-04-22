@@ -9,7 +9,7 @@
 #define __altLib__ 2204
 #define __altLib_Platform__ "stc16"
 
-#include "stc16f.h"
+#include "stc16.h"
 #include "al_stdint.h"
 #include <intrins.h>
 
@@ -82,7 +82,6 @@ typedef bit statusType;
 #define bitAction_Clr(bitVar, bitPos) bitVar &= ~(1 << bitPos)
 #define bitAction_Rev(bitVar, bitPos) bitVar ^= (1 << bitPos)
 #define bitAction_Get(bitVar, bitPos) (bitVar & (1 << bitPos))
-
 
 #endif
 #endif

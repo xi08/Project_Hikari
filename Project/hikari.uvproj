@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define>USE_8701E</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph;..\LibV2\STC_Core;..\LibV2\STC_Periph;..\LibV2\Devices</IncludePath>
+              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph;..\altLib\STC16F_Func;..\altLib\STC16F_Core;..\altLib\STC16F_Periph;..\altLib\Devices</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -438,51 +438,11 @@
               <FileName>STC16_FPMU_V10.LIB</FileName>
               <FileType>4</FileType>
               <FilePath>..\Lib\libraries\STC16_FPMU_V10.LIB</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>2</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules>DFPMU_SP</IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                  <BankNo>65535</BankNo>
-                </CommonProperty>
-                <File251/>
-              </FileOption>
             </File>
             <File>
               <FileName>STC16_MDU32_V10.LIB</FileName>
               <FileType>4</FileType>
               <FilePath>..\Lib\libraries\STC16_MDU32_V10.LIB</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>2</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules>STC_MDU32</IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                  <BankNo>65535</BankNo>
-                </CommonProperty>
-                <File251/>
-              </FileOption>
             </File>
           </Files>
         </Group>
@@ -552,7 +512,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>AltPeriph</GroupName>
+          <GroupName>Periph2</GroupName>
           <Files>
             <File>
               <FileName>DisplayFont.c</FileName>
@@ -565,59 +525,6 @@
               <FilePath>..\Periph\TFT18.c</FilePath>
             </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>LibV2</GroupName>
-          <Files>
-            <File>
-              <FileName>al_stc16x_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\LibV2\STC_Periph\al_stc16x_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>al_stc16x_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\LibV2\STC_Periph\al_stc16x_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>al_stc16x_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\LibV2\STC_Periph\al_stc16x_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>al_stc16x_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\LibV2\STC_Periph\al_stc16x_i2c.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CoreV2</GroupName>
-          <Files>
-            <File>
-              <FileName>STC16_MDU32_V10.LIB</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\LibV2\STC_Core\STC16_MDU32_V10.LIB</FilePath>
-            </File>
-            <File>
-              <FileName>stc16f.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\LibV2\STC_Core\stc16f.h</FilePath>
-            </File>
-            <File>
-              <FileName>al_stdint.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\LibV2\STC_Core\al_stdint.h</FilePath>
-            </File>
-            <File>
-              <FileName>STC16_FPMU_V10.LIB</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\LibV2\STC_Core\STC16_FPMU_V10.LIB</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>PeriphV2</GroupName>
         </Group>
       </Groups>
     </Target>

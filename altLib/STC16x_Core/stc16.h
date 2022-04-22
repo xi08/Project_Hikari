@@ -1,5 +1,5 @@
-#ifndef __STC16F_H__
-#define __STC16F_H__
+#ifndef __STC16_H__
+#define __STC16_H__
 
 /////////////////////////////////////////////////
 //SFR:80H-SFR:FFH
