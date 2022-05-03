@@ -1,5 +1,4 @@
-// code = utf-8
-
+/* code = utf-8 */
 #ifndef __al_stc16x_gpio_h
 #define __al_stc16x_gpio_h
 

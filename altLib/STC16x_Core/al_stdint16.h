@@ -1,7 +1,6 @@
-// code = utf-8
 
-#ifndef __al_stdint_h
-#define __al_stdint_h
+#ifndef __al_stdint16_h
+#define __al_stdint16_h
 
 /* exact-width signed integer types */
 typedef signed char int8_t;

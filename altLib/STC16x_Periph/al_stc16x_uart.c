@@ -1,6 +1,6 @@
-// code = utf-8
+/* code = utf-8 */
 
-#include "al_stc16x_exti.h"
+#include "al_stc16x_uart.h"
 #ifdef USE_AltLib
 
 #endif

@@ -1,17 +1,17 @@
-// code = utf-8
+/* code = utf-8 */
 #pragma warning disable = 38
 
 #ifndef __al_stc16x_h
 #define __al_stc16x_h
 
+#include "stc16x.h"
+#include "al_stdint16.h"
+#include <intrins.h>
+
 #ifdef USE_AltLib
 
 #define __altLib__ 2204
 #define __altLib_Platform__ "stc16"
-
-#include "stc16x.h"
-#include "al_stdint.h"
-#include <intrins.h>
 
 // 断言
 #ifndef _ReleaseVersion

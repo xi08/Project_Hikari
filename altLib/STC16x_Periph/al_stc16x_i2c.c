@@ -1,4 +1,4 @@
-// code = utf-8
+/* code = utf-8 */
 #include "al_stc16x_i2c.h"
 #ifdef USE_AltLib
 
@@ -10,6 +10,33 @@
  */
 void I2C_Init(I2C_enum I2Cx, I2C_InitTypeDef *initStruct)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+    al_assert(IS_I2C_Port(initStruct->I2C_Port));
+    al_assert(IS_I2C_Mode(initStruct->I2C_Mode));
+    al_assert(IS_I2C_ClockDiv(initStruct->I2C_ClockDiv));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        if (initStruct->I2C_Mode) // 主从机设置
+            I2CCFG |= (1 << 6);   // 主机模式
+        else
+            I2CCFG &= ~(1 << 6); // 从机模式
+
+        I2CCFG |= (initStruct->I2C_ClockDiv);          // 分频设置
+        P_SW2 |= (initStruct->I2C_Port << 4);          // 引脚设置
+        I2CSLADR |= (initStruct->I2C_OwnAddress << 1); // 从机地址设置
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -29,6 +56,26 @@ void I2C_DeInit(I2C_enum I2Cx)
  */
 void I2C_Cmd(I2C_enum I2Cx, statusType newStatus)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        if (newStatus)
+            I2CCFG |= (1 << 6); // 开
+        else
+            I2CCFG &= ~(1 << 6); // 关
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -39,6 +86,25 @@ void I2C_Cmd(I2C_enum I2Cx, statusType newStatus)
  */
 void I2C_PortConfig(I2C_enum I2Cx, I2C_Port_enum newPort)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+    al_assert(IS_I2C_Port(newPort));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        P_SW2 &= ~(0x03 << 4);   // 清除原有接口
+        P_SW2 |= (newPort << 4); // 设置新接口
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -49,6 +115,27 @@ void I2C_PortConfig(I2C_enum I2Cx, I2C_Port_enum newPort)
  */
 void I2C_ModeConfig(I2C_enum I2Cx, I2C_Mode_enum newMode)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+    al_assert(IS_I2C_Mode(newMode));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        if (newMode)            // 主从机设置
+            I2CCFG |= (1 << 6); // 主机模式
+        else
+            I2CCFG &= ~(1 << 6); // 从机模式
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -59,6 +146,24 @@ void I2C_ModeConfig(I2C_enum I2Cx, I2C_Mode_enum newMode)
  */
 void I2C_ClockConfig(I2C_enum I2Cx, uint8_t newClockDiv)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+    al_assert(IS_I2C_ClockDiv(newClockDiv));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CCFG |= newClockDiv; // 分频设置
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -69,6 +174,23 @@ void I2C_ClockConfig(I2C_enum I2Cx, uint8_t newClockDiv)
  */
 void I2C_OwnAddrConfig(I2C_enum I2Cx, uint8_t newOwnAddr)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CSLADR |= (newOwnAddr << 1); // 从机地址设置
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -128,6 +250,23 @@ void I2C_SendPage(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t destRegAddr, uint8_
  */
 void I2C_CMD_SendSTART(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x01);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -137,6 +276,23 @@ void I2C_CMD_SendSTART(I2C_enum I2Cx)
  */
 void I2C_CMD_SendSTOP(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x06);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -146,6 +302,24 @@ void I2C_CMD_SendSTOP(I2C_enum I2Cx)
  */
 void I2C_CMD_SendACK(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSST |= (0x00);
+        I2CMSCR |= (0x05);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -155,6 +329,24 @@ void I2C_CMD_SendACK(I2C_enum I2Cx)
  */
 void I2C_CMD_SendNACK(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSST |= (0x01);
+        I2CMSCR |= (0x05);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -164,6 +356,24 @@ void I2C_CMD_SendNACK(I2C_enum I2Cx)
  */
 void I2C_CMD_RecvACK(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+
+        I2CMSCR |= (0x03);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -173,6 +383,23 @@ void I2C_CMD_RecvACK(I2C_enum I2Cx)
  */
 void I2C_CMD_SendData(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x02);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -182,6 +409,23 @@ void I2C_CMD_SendData(I2C_enum I2Cx)
  */
 void I2C_CMD_RecvData(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x03);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
@@ -191,33 +435,101 @@ void I2C_CMD_RecvData(I2C_enum I2Cx)
  */
 void I2C_SCMD_FirstSend(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x09);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
- * @brief I2C主机指令序列-首次发送后的连续发送
+ * @brief I2C主机指令串-首次发送后的连续发送
  *
  * @param I2Cx 目标I2C单元
  */
 void I2C_SCMD_SerialSend(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x0a);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
- * @brief I2C主机指令序列-连续接收
+ * @brief I2C主机指令串-连续接收
  *
  * @param I2Cx 目标I2C单元
  */
 void I2C_SCMD_SerialRecv(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x0b);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**
- * @brief I2C主机指令序列-末次接收
+ * @brief I2C主机指令串-末次接收
  *
  * @param I2Cx 目标I2C单元
  */
 void I2C_SCMD_EndRecv(I2C_enum I2Cx)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_I2C_Periph(I2Cx));
+
+    /* 设置参数 */
+    EnableXFR(); // 开启XFR访问
+    switch (I2Cx)
+    {
+    case I2C1: // I2C1
+    {
+        I2CMSCR |= (0x0c);
+        break;
+    }
+
+    default:
+        break;
+    }
+    DisableXFR(); // 关闭XFR访问
 }
 
 /**

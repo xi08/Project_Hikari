@@ -1,4 +1,4 @@
-// code = utf-8
+/* code = utf-8 */
 
 #ifndef __al_stc16x_i2c_h
 #define __al_stc16x_i2c_h
@@ -22,9 +22,9 @@ typedef enum
  */
 typedef enum
 {
-    I2C1_Port0 = 0, // SCL=P15, SDA=P14
-    I2C1_Port1 = 1, // SCL=P25, SDA=P24
-    I2C1_Port3 = 3, // SCL=P32, SDA=P33
+    I2C1_Port0 = 0x00, // SCL=P15, SDA=P14
+    I2C1_Port1 = 0x01, // SCL=P25, SDA=P24
+    I2C1_Port3 = 0x03, // SCL=P32, SDA=P33
 } I2C_Port_enum;
 #define IS_I2C_Port(PORT) (((PORT) == I2C1_Port0) || \
                            ((PORT) == I2C1_Port1) || \
@@ -36,11 +36,13 @@ typedef enum
  */
 typedef enum
 {
-    I2C_Mode_Master,
-    I2C_Mode_Slave,
+    I2C_Mode_Slave = 0,
+    I2C_Mode_Master = 1,
 } I2C_Mode_enum;
 #define IS_I2C_Mode(MODE) (((MODE) == I2C_Mode_Master) || \
-                           ((PORT) == I2C_Mode_Slave))
+                           ((MODE) == I2C_Mode_Slave))
+
+#define IS_I2C_ClockDiv(CKD) (CKD < 64)
 
 /**
  * @brief I2C初始化结构体
@@ -48,7 +50,7 @@ typedef enum
  */
 typedef struct
 {
-    I2C_Port_enum I2C_PORT;
+    I2C_Port_enum I2C_Port;
     I2C_Mode_enum I2C_Mode;
     uint8_t I2C_ClockDiv;
     uint8_t I2C_OwnAddress;
