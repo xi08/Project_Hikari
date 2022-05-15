@@ -810,8 +810,7 @@ uint16_t TIM_GetVal(TIM_enum TIMx)
         return (((uint16_t)T4H << 8) | ((uint8_t)T4L));
         break;
     }
-    default:
-    {
+    default: {
         return 0;
         break;
     }

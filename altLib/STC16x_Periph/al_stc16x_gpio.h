@@ -21,14 +21,9 @@ typedef enum
     GPIO6,
     GPIO7,
 } GPIO_enum;
-#define IS_GPIO_Periph(PERIPH) (((PERIPH) == GPIO0) || \
-                                ((PERIPH) == GPIO1) || \
-                                ((PERIPH) == GPIO2) || \
-                                ((PERIPH) == GPIO3) || \
-                                ((PERIPH) == GPIO4) || \
-                                ((PERIPH) == GPIO5) || \
-                                ((PERIPH) == GPIO6) || \
-                                ((PERIPH) == GPIO7))
+#define IS_GPIO_Periph(PERIPH)                                                                                         \
+    (((PERIPH) == GPIO0) || ((PERIPH) == GPIO1) || ((PERIPH) == GPIO2) || ((PERIPH) == GPIO3) ||                       \
+     ((PERIPH) == GPIO4) || ((PERIPH) == GPIO5) || ((PERIPH) == GPIO6) || ((PERIPH) == GPIO7))
 /**
  * @brief GPIO引脚
  *
@@ -43,14 +38,9 @@ typedef enum
 #define GPIO_Pin_7 ((uint8_t)0x80)
 #define GPIO_Pin_All ((uint8_t)0xFF)
 #define IS_GPIO_Pin(PIN) ((PIN) != (uint8_t)0x00)
-#define IS_GPIO_GetPin(PIN) (((PIN) == (GPIO_Pin_0)) || \
-                             ((PIN) == (GPIO_Pin_1)) || \
-                             ((PIN) == (GPIO_Pin_2)) || \
-                             ((PIN) == (GPIO_Pin_3)) || \
-                             ((PIN) == (GPIO_Pin_4)) || \
-                             ((PIN) == (GPIO_Pin_5)) || \
-                             ((PIN) == (GPIO_Pin_6)) || \
-                             ((PIN) == (GPIO_Pin_7)))
+#define IS_GPIO_GetPin(PIN)                                                                                            \
+    (((PIN) == (GPIO_Pin_0)) || ((PIN) == (GPIO_Pin_1)) || ((PIN) == (GPIO_Pin_2)) || ((PIN) == (GPIO_Pin_3)) ||       \
+     ((PIN) == (GPIO_Pin_4)) || ((PIN) == (GPIO_Pin_5)) || ((PIN) == (GPIO_Pin_6)) || ((PIN) == (GPIO_Pin_7)))
 
 /**
  * @brief GPIO功能枚举
@@ -63,10 +53,9 @@ typedef enum
     GPIO_Mode_In_Floating, // 浮空输入, PxM1=0/PxM0=0
     GPIO_Mode_Out_OD,      // 开漏输出, PxM1=1/PxM0=1
 } GPIO_Mode_enum;
-#define IS_GPIO_Mode(MODE) (((MODE) == GPIO_Mode_Dual_Normal) || \
-                            ((MODE) == GPIO_Mode_Out_PP) ||      \
-                            ((MODE) == GPIO_Mode_In_Floating) || \
-                            ((MODE) == GPIO_Mode_Out_OD))
+#define IS_GPIO_Mode(MODE)                                                                                             \
+    (((MODE) == GPIO_Mode_Dual_Normal) || ((MODE) == GPIO_Mode_Out_PP) || ((MODE) == GPIO_Mode_In_Floating) ||         \
+     ((MODE) == GPIO_Mode_Out_OD))
 
 /**
  * @brief GPIO速度状态枚举
@@ -77,8 +66,7 @@ typedef enum
     GPIO_Speed_Normal, // 慢速翻转, PxSR=1
     GPIO_Speed_High,   // 快速反转, PxSR=0
 } GPIO_Speed_enum;
-#define IS_GPIO_Speed(SPEED) (((SPEED) == GPIO_Speed_Normal) || \
-                              ((SPEED) == GPIO_Speed_High))
+#define IS_GPIO_Speed(SPEED) (((SPEED) == GPIO_Speed_Normal) || ((SPEED) == GPIO_Speed_High))
 
 /**
  * @brief GPIO端口内部集成上拉电阻状态枚举
@@ -89,8 +77,7 @@ typedef enum
     GPIO_PullUp_0,   // 禁止端口内部集成上拉电阻, PxPU=0
     GPIO_PullUp_4K1, // 端口内部集成上拉电阻为4.1K, PxPU=1
 } GPIO_PullUp_enum;
-#define IS_GPIO_PullUp(PUUP) (((PUUP) == GPIO_PullUp_0) || \
-                              ((PUUP) == GPIO_PullUp_4K1))
+#define IS_GPIO_PullUp(PUUP) (((PUUP) == GPIO_PullUp_0) || ((PUUP) == GPIO_PullUp_4K1))
 
 /**
  * @brief GPIO驱动电流状态枚举
@@ -101,8 +88,7 @@ typedef enum
     GPIO_Currect_Normal, // 一般驱动电流, PxDR=1
     GPIO_Currect_High,   // 增强驱动电流, PxDR=0
 } GPIO_Currect_enum;
-#define IS_GPIO_Currect(CURR) (((CURR) == GPIO_Currect_Normal) || \
-                               ((CURR) == GPIO_Currect_High))
+#define IS_GPIO_Currect(CURR) (((CURR) == GPIO_Currect_Normal) || ((CURR) == GPIO_Currect_High))
 
 /**
  * @brief GPIO引脚初始化结构体

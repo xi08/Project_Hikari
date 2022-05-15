@@ -4,8 +4,8 @@
 #ifndef __al_stc16x_h
 #define __al_stc16x_h
 
-#include "stc16x.h"
 #include "al_stdint16.h"
+#include "stc16x.h"
 #include <intrins.h>
 
 #ifdef USE_AltLib
@@ -63,20 +63,26 @@ typedef volatile const uint32_t vuc32; /* 只读 */
 typedef volatile const uint16_t vuc16; /* 只读 */
 typedef volatile const uint8_t vuc8;   /* 只读 */
 
+
+
 // 布尔
 typedef bit BOOL;
 
 // 标志位
-typedef bit flagType;
-#define RESET (flagType)0
-#define SET !(RESET)
+typedef enum
+{
+    RESET = 0,
+    SET = !RESET,
+} flagType;
 
 // 状态位
-typedef bit statusType;
-#define DISABLE (statusType)0
-#define ENABLE !(DISABLE)
-#define SUCCESS (statusType)0
-#define FAILURE !(SUCCESS)
+typedef enum
+{
+    DISABLE = 0,
+    SUCCESS = 0,
+    ENABLE = !DISABLE,
+    FAILURE = !SUCCESS,
+} statusType;
 
 #define bitAction_Set(bitVar, bitPos) bitVar |= (1 << bitPos)
 #define bitAction_Clr(bitVar, bitPos) bitVar &= ~(1 << bitPos)

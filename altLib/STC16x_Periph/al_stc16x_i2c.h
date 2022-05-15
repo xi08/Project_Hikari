@@ -26,9 +26,7 @@ typedef enum
     I2C1_Port1 = 0x01, // SCL=P25, SDA=P24
     I2C1_Port3 = 0x03, // SCL=P32, SDA=P33
 } I2C_Port_enum;
-#define IS_I2C_Port(PORT) (((PORT) == I2C1_Port0) || \
-                           ((PORT) == I2C1_Port1) || \
-                           ((PORT) == I2C1_Port3))
+#define IS_I2C_Port(PORT) (((PORT) == I2C1_Port0) || ((PORT) == I2C1_Port1) || ((PORT) == I2C1_Port3))
 
 /**
  * @brief I2C模式枚举
@@ -39,8 +37,7 @@ typedef enum
     I2C_Mode_Slave = 0,
     I2C_Mode_Master = 1,
 } I2C_Mode_enum;
-#define IS_I2C_Mode(MODE) (((MODE) == I2C_Mode_Master) || \
-                           ((MODE) == I2C_Mode_Slave))
+#define IS_I2C_Mode(MODE) (((MODE) == I2C_Mode_Master) || ((MODE) == I2C_Mode_Slave))
 
 #define IS_I2C_ClockDiv(CKD) (CKD < 64)
 
@@ -70,18 +67,6 @@ void I2C_RecvByte(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t srcRegAddr, uint8_t
 void I2C_SendByte(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t destRegAddr, uint8_t src);
 void I2C_RecvPage(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t srcRegAddr, uint8_t *dest, uint8_t n);
 void I2C_SendPage(I2C_enum I2Cx, uint8_t deviceAddr, uint8_t destRegAddr, uint8_t *src, uint8_t n);
-
-void I2C_CMD_SendSTART(I2C_enum I2Cx);
-void I2C_CMD_SendSTOP(I2C_enum I2Cx);
-void I2C_CMD_SendACK(I2C_enum I2Cx);
-void I2C_CMD_SendNACK(I2C_enum I2Cx);
-void I2C_CMD_RecvACK(I2C_enum I2Cx);
-void I2C_CMD_SendData(I2C_enum I2Cx);
-void I2C_CMD_RecvData(I2C_enum I2Cx);
-void I2C_SCMD_FirstSend(I2C_enum I2Cx);
-void I2C_SCMD_SerialSend(I2C_enum I2Cx);
-void I2C_SCMD_SerialRecv(I2C_enum I2Cx);
-void I2C_SCMD_EndRecv(I2C_enum I2Cx);
 
 void I2C_ITConfig(I2C_enum I2Cx, uint16_t I2C_IT, statusType newStatus);
 flagType I2C_GetITStatus(I2C_enum I2Cx, uint16_t I2C_IT);

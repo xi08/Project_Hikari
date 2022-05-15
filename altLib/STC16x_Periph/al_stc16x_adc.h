@@ -5,6 +5,7 @@
 
 #include "al_stc16x.h"
 #ifdef USE_AltLib
+
 /**
  * @brief ADC引脚/通道枚举
  *
@@ -29,36 +30,15 @@ typedef enum
 
     ADC_POW = 0x0f,
 } ADC_Channel_enum;
-#define IS_ADC_Channel(CH) (((CH) == ADC_P10) || \
-                            ((CH) == ADC_P11) || \
-                            ((CH) == ADC_P13) || \
-                            ((CH) == ADC_P14) || \
-                            ((CH) == ADC_P15) || \
-                            ((CH) == ADC_P16) || \
-                            ((CH) == ADC_P17) || \
-                            ((CH) == ADC_P00) || \
-                            ((CH) == ADC_P01) || \
-                            ((CH) == ADC_P02) || \
-                            ((CH) == ADC_P03) || \
-                            ((CH) == ADC_P04) || \
-                            ((CH) == ADC_P05) || \
-                            ((CH) == ADC_P06) || \
-                            ((CH) == ADC_POW))
+#define IS_ADC_Channel(CH)                                                                                             \
+    (((CH) == ADC_P10) || ((CH) == ADC_P11) || ((CH) == ADC_P13) || ((CH) == ADC_P14) || ((CH) == ADC_P15) ||          \
+     ((CH) == ADC_P16) || ((CH) == ADC_P17) || ((CH) == ADC_P00) || ((CH) == ADC_P01) || ((CH) == ADC_P02) ||          \
+     ((CH) == ADC_P03) || ((CH) == ADC_P04) || ((CH) == ADC_P05) || ((CH) == ADC_P06) || ((CH) == ADC_POW))
 
-#define IS_ADC_ChannelEXT(CH) (((CH) == ADC_P10) || \
-                               ((CH) == ADC_P11) || \
-                               ((CH) == ADC_P13) || \
-                               ((CH) == ADC_P14) || \
-                               ((CH) == ADC_P15) || \
-                               ((CH) == ADC_P16) || \
-                               ((CH) == ADC_P17) || \
-                               ((CH) == ADC_P00) || \
-                               ((CH) == ADC_P01) || \
-                               ((CH) == ADC_P02) || \
-                               ((CH) == ADC_P03) || \
-                               ((CH) == ADC_P04) || \
-                               ((CH) == ADC_P05) || \
-                               ((CH) == ADC_P06))
+#define IS_ADC_ChannelEXT(CH)                                                                                          \
+    (((CH) == ADC_P10) || ((CH) == ADC_P11) || ((CH) == ADC_P13) || ((CH) == ADC_P14) || ((CH) == ADC_P15) ||          \
+     ((CH) == ADC_P16) || ((CH) == ADC_P17) || ((CH) == ADC_P00) || ((CH) == ADC_P01) || ((CH) == ADC_P02) ||          \
+     ((CH) == ADC_P03) || ((CH) == ADC_P04) || ((CH) == ADC_P05) || ((CH) == ADC_P06))
 
 /**
  * @brief ADC时钟分频
