@@ -1,4 +1,3 @@
-/* code = utf-8 */
 
 #ifndef __al_stc16x_tim_h
 #define __al_stc16x_tim_h
@@ -69,15 +68,17 @@ typedef enum
  * @brief 定时器中断触发源
  *
  */
-#define TIM_IT_Update ((uint8_t)0x01) // 定时器更新
-#define IS_TIM_IT(SRC) ((SRC) != (uint8_t)0x00)
+#define TIM_IT_Update ((uint16_t)0x0001) // 定时器更新
+#define IS_TIM_IT(SRC) ((SRC) != (uint16_t)0)
+#define IS_TIM_GET_IT(SRC) (((SRC) == TIM_IT_Update))
 
 /**
  * @brief 定时器状态置位触发源
  *
  */
-#define TIM_FLAG_Update ((uint8_t)0x01) // 定时器更新
-#define IS_TIM_FLAG(SRC) ((SRC) != (uint8_t)0x00)
+#define TIM_FLAG_Update ((uint16_t)0x0001) // 定时器更新
+#define IS_TIM_FLAG(SRC) ((SRC) != (uint16_t)0)
+#define IS_TIM_GET_FLAG(SRC) (((SRC) == TIM_IT_Update))
 
 /**
  * @brief 定时器初始化结构体
@@ -85,9 +86,9 @@ typedef enum
  */
 typedef struct
 {
-    TIM_Mode_enum TIM_Mode;
-    TIM_ClkSrc_enum TIM_ClockSource;
-    uint16_t TIM_AutoReloadValue;
+    TIM_Mode_enum TIM_Mode;          // 定时器模式
+    TIM_ClkSrc_enum TIM_ClockSource; // 定时器时钟源
+    uint16_t TIM_LoadValue;    // 定时器初始装载值
 
 } TIM_InitTypeDef;
 

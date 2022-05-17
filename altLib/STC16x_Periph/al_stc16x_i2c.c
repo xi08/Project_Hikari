@@ -1,4 +1,4 @@
-/* code = utf-8 */
+
 #include "al_stc16x_i2c.h"
 #include "al_stc16x_misc.h"
 #ifdef USE_AltLib

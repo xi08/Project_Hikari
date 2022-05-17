@@ -1,4 +1,3 @@
-/* code = utf-8 */
 
 #include "al_stc16x_tim.h"
 #ifdef USE_AltLib
@@ -136,13 +135,13 @@ void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct)
         /* 设置初始值 */
         if (initStruct->TIM_Mode == TIM_Mode_8AR)
         {
-            TL0 = (uint8_t)initStruct->TIM_AutoReloadValue; // 8位
-            TH0 = (uint8_t)initStruct->TIM_AutoReloadValue; // 8位
+            TL0 = (uint8_t)initStruct->TIM_LoadValue; // 8位
+            TH0 = (uint8_t)initStruct->TIM_LoadValue; // 8位
         }
         else
         {
-            TL0 = (uint8_t)initStruct->TIM_AutoReloadValue;        // 低8位
-            TH0 = (uint8_t)(initStruct->TIM_AutoReloadValue >> 8); // 高8位
+            TL0 = (uint8_t)initStruct->TIM_LoadValue;        // 低8位
+            TH0 = (uint8_t)(initStruct->TIM_LoadValue >> 8); // 高8位
         }
 
         /* 工作模式设置 */
@@ -182,13 +181,13 @@ void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct)
         /* 设置初始值 */
         if (initStruct->TIM_Mode == TIM_Mode_8AR)
         {
-            TL1 = (uint8_t)initStruct->TIM_AutoReloadValue; // 8位
-            TH1 = (uint8_t)initStruct->TIM_AutoReloadValue; // 8位
+            TL1 = (uint8_t)initStruct->TIM_LoadValue; // 8位
+            TH1 = (uint8_t)initStruct->TIM_LoadValue; // 8位
         }
         else
         {
-            TL1 = (uint8_t)initStruct->TIM_AutoReloadValue;        // 低8位
-            TH1 = (uint8_t)(initStruct->TIM_AutoReloadValue >> 8); // 高8位
+            TL1 = (uint8_t)initStruct->TIM_LoadValue;        // 低8位
+            TH1 = (uint8_t)(initStruct->TIM_LoadValue >> 8); // 高8位
         }
 
         /* 工作模式设置 */
@@ -227,8 +226,8 @@ void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct)
         }
 
         /* 设置初始值 */
-        T2L = (uint8_t)initStruct->TIM_AutoReloadValue;        // 低8位
-        T2H = (uint8_t)(initStruct->TIM_AutoReloadValue >> 8); // 高8位
+        T2L = (uint8_t)initStruct->TIM_LoadValue;        // 低8位
+        T2H = (uint8_t)(initStruct->TIM_LoadValue >> 8); // 高8位
 
         break;
     }
@@ -261,8 +260,8 @@ void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct)
         }
 
         /* 设置初始值 */
-        T3L = (uint8_t)initStruct->TIM_AutoReloadValue;        // 低8位
-        T3H = (uint8_t)(initStruct->TIM_AutoReloadValue >> 8); // 高8位
+        T3L = (uint8_t)initStruct->TIM_LoadValue;        // 低8位
+        T3H = (uint8_t)(initStruct->TIM_LoadValue >> 8); // 高8位
 
         break;
     }
@@ -294,8 +293,8 @@ void TIM_Init(TIM_enum TIMx, TIM_InitTypeDef *initStruct)
         }
 
         /* 设置初始值 */
-        T4L = (uint8_t)initStruct->TIM_AutoReloadValue;        // 低8位
-        T4H = (uint8_t)(initStruct->TIM_AutoReloadValue >> 8); // 高8位
+        T4L = (uint8_t)initStruct->TIM_LoadValue;        // 低8位
+        T4H = (uint8_t)(initStruct->TIM_LoadValue >> 8); // 高8位
 
         break;
     }
@@ -375,56 +374,65 @@ void TIM_ITConfig(TIM_enum TIMx, uint16_t TIM_IT, statusType newStatus)
     /* 检查参数合法性 */
     al_assert(IS_TIM_Periph(TIMx));
     al_assert(IS_TIM_IT(TIM_IT));
+
     /* 设置参数 */
-    switch (TIM_IT)
+    switch (TIMx)
     {
-    case TIM_IT_Update: // 定时器更新中断
-        switch (TIMx)
-        {
-        case TIM0: // TIM0
+    case TIM0: // TIM0
+    {
+        if (TIM_IT & TIM_IT_Update) // 定时器更新
         {
             if (newStatus)
                 ET0 = 1; // 设置控制位
             else
                 ET0 = 0; // 清除控制位
-            break;
         }
-        case TIM1: // TIM1
+        break;
+    }
+    case TIM1: // TIM1
+    {
+        if (TIM_IT & TIM_IT_Update) // 定时器更新
         {
             if (newStatus)
                 ET1 = 1; // 设置控制位
             else
                 ET1 = 0; // 清除控制位
-            break;
         }
-        case TIM2: // TIM2
+        break;
+    }
+    case TIM2: // TIM2
+    {
+        if (TIM_IT & TIM_IT_Update) // 定时器更新
         {
             if (newStatus)
                 IE2 |= (1 << 2); // 设置控制位
             else
                 IE2 &= ~(1 << 2); // 清除控制位
-            break;
         }
-        case TIM3: // TIM3
+        break;
+    }
+    case TIM3: // TIM3
+    {
+        if (TIM_IT & TIM_IT_Update) // 定时器更新
         {
             if (newStatus)
                 IE2 |= (1 << 5); // 设置控制位
             else
                 IE2 &= ~(1 << 5); // 清除控制位
-            break;
         }
-        case TIM4: // TIM4
+        break;
+    }
+    case TIM4: // TIM4
+    {
+        if (TIM_IT & TIM_IT_Update) // 定时器更新
         {
             if (newStatus)
                 IE2 |= (1 << 6); // 设置控制位
             else
                 IE2 &= ~(1 << 6); // 清除控制位
-            break;
-        }
-        default:
-            break;
         }
         break;
+    }
     default:
         break;
     }
@@ -439,6 +447,12 @@ void TIM_ITConfig(TIM_enum TIMx, uint16_t TIM_IT, statusType newStatus)
  */
 flagType TIM_GetITStatus(TIM_enum TIMx, uint16_t TIM_IT)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_TIM_Periph(TIMx));
+    al_assert(IS_TIM_GET_IT(TIM_IT));
+
+    /* 检测参数 */
+
 }
 
 /**
@@ -860,6 +874,21 @@ uint16_t TIM_GetCounter(TIM_enum TIMx)
  */
 void TIM_FlagConfig(TIM_enum TIMx, uint16_t TIM_FLAG, statusType newStatus)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_TIM_Periph(TIMx));
+    al_assert(IS_TIM_FLAG(TIM_FLAG));
+
+    /* 设置定时器 */
+    switch (TIMx)
+    {
+    case TIM0: // TIM0
+    {
+        if (TIM_FLAG & TIM_IT_Update)
+        {
+        }
+        break;
+    }
+    }
 }
 
 /**
@@ -871,6 +900,8 @@ void TIM_FlagConfig(TIM_enum TIMx, uint16_t TIM_FLAG, statusType newStatus)
  */
 flagType TIM_GetFlagStatus(TIM_enum TIMx, uint16_t TIM_FLAG)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_TIM_Periph(TIMx));
 }
 
 /**
@@ -881,6 +912,8 @@ flagType TIM_GetFlagStatus(TIM_enum TIMx, uint16_t TIM_FLAG)
  */
 void TIM_ClearFlag(TIM_enum TIMx, uint16_t TIM_FLAG)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_TIM_Periph(TIMx));
 }
 
 /**

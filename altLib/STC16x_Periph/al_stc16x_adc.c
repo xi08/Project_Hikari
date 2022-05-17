@@ -1,4 +1,3 @@
-/* code = utf-8 */
 
 #include "al_stc16x_adc.h"
 #ifdef USE_AltLib

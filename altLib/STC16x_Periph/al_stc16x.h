@@ -1,11 +1,11 @@
-/* code = utf-8 */
+
 #pragma warning disable = 38
 
 #ifndef __al_stc16x_h
 #define __al_stc16x_h
 
 #include "al_stdint16.h"
-#include "stc16x.h"
+#include "stc16.h"
 #include <intrins.h>
 
 #ifdef USE_AltLib
@@ -63,10 +63,8 @@ typedef volatile const uint32_t vuc32; /* 只读 */
 typedef volatile const uint16_t vuc16; /* 只读 */
 typedef volatile const uint8_t vuc8;   /* 只读 */
 
-
-
 // 布尔
-typedef bit BOOL;
+typedef uint8_t BOOL;
 
 // 标志位
 typedef enum
