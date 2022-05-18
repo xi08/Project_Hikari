@@ -135,13 +135,13 @@ void Timer_Init(Timer_enum TimerX, Timer_InitTypeDef *initStruct)
         /* 设置初始值 */
         if (initStruct->Timer_Mode == Timer_Mode_8AR)
         {
-            TL0 = (uint8_t)initStruct->Timer_LoadValue; // 8位
-            TH0 = (uint8_t)initStruct->Timer_LoadValue; // 8位
+            TL0 = (uint8_t)initStruct->Timer_AutoReloadValue; // 8位
+            TH0 = (uint8_t)initStruct->Timer_AutoReloadValue; // 8位
         }
         else
         {
-            TL0 = (uint8_t)initStruct->Timer_LoadValue;        // 低8位
-            TH0 = (uint8_t)(initStruct->Timer_LoadValue >> 8); // 高8位
+            TL0 = (uint8_t)initStruct->Timer_AutoReloadValue;        // 低8位
+            TH0 = (uint8_t)(initStruct->Timer_AutoReloadValue >> 8); // 高8位
         }
 
         /* 工作模式设置 */
@@ -181,13 +181,13 @@ void Timer_Init(Timer_enum TimerX, Timer_InitTypeDef *initStruct)
         /* 设置初始值 */
         if (initStruct->Timer_Mode == Timer_Mode_8AR)
         {
-            TL1 = (uint8_t)initStruct->Timer_LoadValue; // 8位
-            TH1 = (uint8_t)initStruct->Timer_LoadValue; // 8位
+            TL1 = (uint8_t)initStruct->Timer_AutoReloadValue; // 8位
+            TH1 = (uint8_t)initStruct->Timer_AutoReloadValue; // 8位
         }
         else
         {
-            TL1 = (uint8_t)initStruct->Timer_LoadValue;        // 低8位
-            TH1 = (uint8_t)(initStruct->Timer_LoadValue >> 8); // 高8位
+            TL1 = (uint8_t)initStruct->Timer_AutoReloadValue;        // 低8位
+            TH1 = (uint8_t)(initStruct->Timer_AutoReloadValue >> 8); // 高8位
         }
 
         /* 工作模式设置 */
@@ -226,8 +226,8 @@ void Timer_Init(Timer_enum TimerX, Timer_InitTypeDef *initStruct)
         }
 
         /* 设置初始值 */
-        T2L = (uint8_t)initStruct->Timer_LoadValue;        // 低8位
-        T2H = (uint8_t)(initStruct->Timer_LoadValue >> 8); // 高8位
+        T2L = (uint8_t)initStruct->Timer_AutoReloadValue;        // 低8位
+        T2H = (uint8_t)(initStruct->Timer_AutoReloadValue >> 8); // 高8位
 
         break;
     }
@@ -260,8 +260,8 @@ void Timer_Init(Timer_enum TimerX, Timer_InitTypeDef *initStruct)
         }
 
         /* 设置初始值 */
-        T3L = (uint8_t)initStruct->Timer_LoadValue;        // 低8位
-        T3H = (uint8_t)(initStruct->Timer_LoadValue >> 8); // 高8位
+        T3L = (uint8_t)initStruct->Timer_AutoReloadValue;        // 低8位
+        T3H = (uint8_t)(initStruct->Timer_AutoReloadValue >> 8); // 高8位
 
         break;
     }
@@ -293,8 +293,8 @@ void Timer_Init(Timer_enum TimerX, Timer_InitTypeDef *initStruct)
         }
 
         /* 设置初始值 */
-        T4L = (uint8_t)initStruct->Timer_LoadValue;        // 低8位
-        T4H = (uint8_t)(initStruct->Timer_LoadValue >> 8); // 高8位
+        T4L = (uint8_t)initStruct->Timer_AutoReloadValue;        // 低8位
+        T4H = (uint8_t)(initStruct->Timer_AutoReloadValue >> 8); // 高8位
 
         break;
     }
@@ -452,6 +452,83 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
     al_assert(IS_Timer_GET_IT(Timer_IT));
 
     /* 检测参数 */
+    /* 设置参数 */
+    switch (TimerX)
+    {
+    case Timer0: // Timer0
+    {
+        switch (Timer_IT)
+        {
+        case Timer_IT_Update: // 定时器更新
+        {
+            return (flagType)TF0;
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer1: // Timer1
+    {
+
+        switch (Timer_IT)
+        {
+        case Timer_IT_Update: // 定时器更新
+        {
+            return (flagType)TF1;
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer2: // Timer2
+    {
+        switch (Timer_IT)
+        {
+        case Timer_IT_Update: // 定时器更新
+        {
+            return (flagType)(AUXINTIF & (1 << 0));
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer3: // Timer3
+    {
+        switch (Timer_IT)
+        {
+        case Timer_IT_Update: // 定时器更新
+        {
+            return (flagType)(AUXINTIF & (1 << 1));
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer4: // Timer4
+    {
+        switch (Timer_IT)
+        {
+        case Timer_IT_Update: // 定时器更新
+        {
+            return (flagType)(AUXINTIF & (1 << 2));
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 /**
@@ -462,6 +539,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
  */
 void Timer_ClearITPendingBit(Timer_enum TimerX, uint16_t Timer_IT)
 {
+    
 }
 
 /**
@@ -862,82 +940,6 @@ void Timer_SetCounter(Timer_enum TimerX, uint16_t newVal)
 uint16_t Timer_GetCounter(Timer_enum TimerX)
 {
     return Timer_GetVal(TimerX);
-}
-
-/**
- * @brief 定时器状态位配置
- *
- * @param TimerX 目标定时器
- * @param Timer_FLAG 状态置位触发来源
- * @param newStatus 功能状态: 开启/关闭
- */
-void Timer_FlagConfig(Timer_enum TimerX, uint16_t Timer_FLAG, statusType newStatus)
-{
-    /* 检查参数合法性 */
-    al_assert(IS_Timer_Periph(TimerX));
-    al_assert(IS_Timer_FLAG(Timer_FLAG));
-
-    /* 设置参数 */
-    switch (TimerX)
-    {
-    case Timer0: // Timer0
-    {
-        if (Timer_FLAG & Timer_FLAG_Update) // 定时器更新
-        {
-            if (newStatus)
-                ET0 = 1; // 设置控制位
-            else
-                ET0 = 0; // 清除控制位
-        }
-        break;
-    }
-    case Timer1: // Timer1
-    {
-        if (Timer_FLAG & Timer_FLAG_Update) // 定时器更新
-        {
-            if (newStatus)
-                ET1 = 1; // 设置控制位
-            else
-                ET1 = 0; // 清除控制位
-        }
-        break;
-    }
-    case Timer2: // Timer2
-    {
-        if (Timer_FLAG & Timer_FLAG_Update) // 定时器更新
-        {
-            if (newStatus)
-                IE2 |= (1 << 2); // 设置控制位
-            else
-                IE2 &= ~(1 << 2); // 清除控制位
-        }
-        break;
-    }
-    case Timer3: // Timer3
-    {
-        if (Timer_FLAG & Timer_FLAG_Update) // 定时器更新
-        {
-            if (newStatus)
-                IE2 |= (1 << 5); // 设置控制位
-            else
-                IE2 &= ~(1 << 5); // 清除控制位
-        }
-        break;
-    }
-    case Timer4: // Timer4
-    {
-        if (Timer_FLAG & Timer_FLAG_Update) // 定时器更新
-        {
-            if (newStatus)
-                IE2 |= (1 << 6); // 设置控制位
-            else
-                IE2 &= ~(1 << 6); // 清除控制位
-        }
-        break;
-    }
-    default:
-        break;
-    }
 }
 
 /**
