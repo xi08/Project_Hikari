@@ -145,7 +145,7 @@ void Timer_Init(Timer_enum TimerX, Timer_InitTypeDef *initStruct)
         }
 
         /* 工作模式设置 */
-        TMOD &= ~(0x03);                         // 清空工作模式
+        TMOD &= ~(0x03);                           // 清空工作模式
         TMOD |= ((uint8_t)initStruct->Timer_Mode); // 设置工作模式
 
         break;
@@ -191,7 +191,7 @@ void Timer_Init(Timer_enum TimerX, Timer_InitTypeDef *initStruct)
         }
 
         /* 工作模式设置 */
-        TMOD &= ~(0x30);                              // 清空工作模式
+        TMOD &= ~(0x30);                                // 清空工作模式
         TMOD |= ((uint8_t)initStruct->Timer_Mode << 4); // 设置工作模式
 
         break;
@@ -1111,52 +1111,52 @@ uint16_t Timer_CNT_GetVal(Timer_enum TimerX)
     {
     case Timer0: // Timer0
     {
-        TR0 = 0;                     // 停止使能定时器
+        TR0 = 0;                       // 停止使能定时器
         TimerVal = (uint16_t)TH0 << 8; // 读出高位
         TimerVal |= ((uint8_t)TL0);    // 读出低位
-        TH0 = 0;                     // 清除高位
-        TL0 = 0;                     // 清除低位
-        TR0 = 1;                     // 使能定时器
+        TH0 = 0;                       // 清除高位
+        TL0 = 0;                       // 清除低位
+        TR0 = 1;                       // 使能定时器
         break;
     }
     case Timer1: // Timer1
     {
-        TR1 = 0;                     // 停止使能定时器
+        TR1 = 0;                       // 停止使能定时器
         TimerVal = (uint16_t)T2H << 8; // 读出高位
         TimerVal |= ((uint8_t)T2L);    // 读出低位
-        TH1 = 0;                     // 清除高位
-        TL1 = 0;                     // 清除低位
-        TR1 = 1;                     // 使能定时器
+        TH1 = 0;                       // 清除高位
+        TL1 = 0;                       // 清除低位
+        TR1 = 1;                       // 使能定时器
         break;
     }
     case Timer2: // Timer2
     {
-        AUXR &= ~(1 << 4);           // 停止使能定时器
+        AUXR &= ~(1 << 4);             // 停止使能定时器
         TimerVal = (uint16_t)T3H << 8; // 读出高位
         TimerVal |= ((uint8_t)T3L);    // 读出低位
-        T2H = 0;                     // 清除高位
-        T2L = 0;                     // 清除低位
-        AUXR |= 1 << 4;              // 使能定时器
+        T2H = 0;                       // 清除高位
+        T2L = 0;                       // 清除低位
+        AUXR |= 1 << 4;                // 使能定时器
         break;
     }
     case Timer3: // Timer3
     {
-        T4T3M &= ~(1 << 3);          // 停止使能定时器
+        T4T3M &= ~(1 << 3);            // 停止使能定时器
         TimerVal = (uint16_t)T4H << 8; // 读出高位
         TimerVal |= ((uint8_t)T4L);    // 读出低位
-        T3H = 0;                     // 清除高位
-        T3L = 0;                     // 清除低位
-        T4T3M |= (1 << 3);           // 使能定时器
+        T3H = 0;                       // 清除高位
+        T3L = 0;                       // 清除低位
+        T4T3M |= (1 << 3);             // 使能定时器
         break;
     }
     case Timer4: // Timer4
     {
-        T4T3M &= ~(1 << 7);          // 停止使能定时器
+        T4T3M &= ~(1 << 7);            // 停止使能定时器
         TimerVal = (uint16_t)TH0 << 8; // 读出高位
         TimerVal |= ((uint8_t)TL0);    // 读出低位
-        T4H = 0;                     // 清除高位
-        T4L = 0;                     // 清除低位
-        T4T3M |= (1 << 7);           // 使能定时器
+        T4H = 0;                       // 清除高位
+        T4L = 0;                       // 清除低位
+        T4T3M |= (1 << 7);             // 使能定时器
         break;
     }
     default:
