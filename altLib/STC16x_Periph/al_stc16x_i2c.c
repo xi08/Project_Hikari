@@ -318,10 +318,12 @@ void I2C_SendNACK(I2C_enum I2Cx)
  * @brief 等待应答信号
  *
  * @param I2Cx 目标I2C单元
- * @return uint8_t
+ * @return uint8_t 应答位高低电平
  */
 uint8_t I2C_WaitACK(I2C_enum I2Cx)
 {
+    uint8_t tmp;
+
     /* 检查参数合法性 */
     al_assert(IS_I2C_Periph(I2Cx));
 
@@ -331,13 +333,17 @@ uint8_t I2C_WaitACK(I2C_enum I2Cx)
     {
     case I2C1: // I2C1
     {
-        
+        I2CMSCR &= ~0x0f;           // 清除I2C主机模式指令
+        I2CMSCR |= 0x02;            // 设置I2C主机模式指令
+        al_delay2us(5);             // 延时
+        tmp = (I2CMSST & (1 << 1)); // 获取应答位高低电平
         break;
     }
     default:
         break;
     }
     DisableXFR(); // 关闭XFR访问
+    return tmp;
 }
 
 /**

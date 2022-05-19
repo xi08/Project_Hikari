@@ -447,6 +447,8 @@ void Timer_ITConfig(Timer_enum TimerX, uint16_t Timer_IT, statusType newStatus)
  */
 flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
 {
+    flagType tmp;
+
     /* 检查参数合法性 */
     al_assert(IS_Timer_Periph(TimerX));
     al_assert(IS_Timer_GET_IT(Timer_IT));
@@ -460,7 +462,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)(ET0 && TF0);
+            tmp = (flagType)(ET0 && TF0);
             break;
         }
         default:
@@ -474,7 +476,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)(ET1 && TF0);
+            tmp = (flagType)(ET1 && TF0);
             break;
         }
         default:
@@ -488,7 +490,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)((IE2 & (1 << 2)) && (AUXINTIF & (1 << 0)));
+            tmp = (flagType)((IE2 & (1 << 2)) && (AUXINTIF & (1 << 0)));
             break;
         }
         default:
@@ -502,7 +504,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)((IE2 & (1 << 5)) && (AUXINTIF & (1 << 1)));
+            tmp = (flagType)((IE2 & (1 << 5)) && (AUXINTIF & (1 << 1)));
             break;
         }
         default:
@@ -516,7 +518,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)((IE2 & (1 << 6)) && (AUXINTIF & (1 << 2)));
+            tmp = (flagType)((IE2 & (1 << 6)) && (AUXINTIF & (1 << 2)));
             break;
         }
         default:
@@ -527,6 +529,8 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
     default:
         break;
     }
+
+    return tmp;
 }
 
 /**
@@ -947,6 +951,8 @@ void Timer_SetVal(Timer_enum TimerX, uint16_t newVal)
  */
 uint16_t Timer_GetVal(Timer_enum TimerX)
 {
+    uint16_t tmp;
+
     /* 检查参数合法性 */
     al_assert(IS_Timer_Periph(TimerX));
 
@@ -955,40 +961,41 @@ uint16_t Timer_GetVal(Timer_enum TimerX)
     {
     case Timer0: // Timer0
     {
-        if ((TMOD & (1 << 1)) && !(TMOD & (1 << 0))) // TMOD == 0bxxxxxx10, Timer_Mode_8AR
-            return ((uint16_t)TL0);
+        if ((TMOD & (1 << 1)) && !(TMOD & (1 << 0))) // 8位自动重装载模式
+            tmp = ((uint16_t)TL0);
         else
-            return (((uint16_t)TH0 << 8) | ((uint8_t)TL0));
+            tmp = (((uint16_t)TH0 << 8) | ((uint8_t)TL0));
         break;
     }
     case Timer1: // Timer1
     {
-        if ((TMOD & (1 << 5)) && !(TMOD & (1 << 4))) // TMOD == 0bxx10xxxx, Timer_Mode_8AR
-            return ((uint16_t)TL1);
+        if ((TMOD & (1 << 5)) && !(TMOD & (1 << 4))) // 8位自动重装载模式
+            tmp = ((uint16_t)TL1);
         else
-            return (((uint16_t)TH1 << 8) | ((uint8_t)TL1));
+            tmp = (((uint16_t)TH1 << 8) | ((uint8_t)TL1));
         break;
     }
     case Timer2: // Timer2
     {
-        return (((uint16_t)T2H << 8) | ((uint8_t)T2L));
+        tmp = (((uint16_t)T2H << 8) | ((uint8_t)T2L));
         break;
     }
     case Timer3: // Timer3
     {
-        return (((uint16_t)T3H << 8) | ((uint8_t)T3L));
+        tmp = (((uint16_t)T3H << 8) | ((uint8_t)T3L));
         break;
     }
     case Timer4: // Timer4
     {
-        return (((uint16_t)T4H << 8) | ((uint8_t)T4L));
+        tmp = (((uint16_t)T4H << 8) | ((uint8_t)T4L));
         break;
     }
     default: {
-        return 0;
+        tmp = 0;
         break;
     }
     }
+    return tmp;
 }
 
 /**
@@ -1034,6 +1041,8 @@ uint16_t Timer_GetCounter(Timer_enum TimerX)
  */
 flagType Timer_GetFlagStatus(Timer_enum TimerX, uint16_t Timer_FLAG)
 {
+    flagType tmp;
+
     /* 检查参数合法性 */
     al_assert(IS_Timer_Periph(TimerX));
     al_assert(IS_Timer_GET_FLAG(Timer_FLAG));
@@ -1047,7 +1056,7 @@ flagType Timer_GetFlagStatus(Timer_enum TimerX, uint16_t Timer_FLAG)
         {
         case Timer_FLAG_Update: // 定时器更新
         {
-            return (flagType)(TF0);
+            tmp = (flagType)(TF0);
             break;
         }
         default:
@@ -1061,7 +1070,7 @@ flagType Timer_GetFlagStatus(Timer_enum TimerX, uint16_t Timer_FLAG)
         {
         case Timer_FLAG_Update: // 定时器更新
         {
-            return (flagType)(TF1);
+            tmp = (flagType)(TF1);
             break;
         }
         default:
@@ -1075,7 +1084,7 @@ flagType Timer_GetFlagStatus(Timer_enum TimerX, uint16_t Timer_FLAG)
         {
         case Timer_FLAG_Update: // 定时器更新
         {
-            return (flagType)(AUXINTIF & (1 << 0));
+            tmp = (flagType)(AUXINTIF & (1 << 0));
             break;
         }
         default:
@@ -1089,7 +1098,7 @@ flagType Timer_GetFlagStatus(Timer_enum TimerX, uint16_t Timer_FLAG)
         {
         case Timer_FLAG_Update: // 定时器更新
         {
-            return (flagType)(AUXINTIF & (1 << 1));
+            tmp = (flagType)(AUXINTIF & (1 << 1));
             break;
         }
         default:
@@ -1103,7 +1112,7 @@ flagType Timer_GetFlagStatus(Timer_enum TimerX, uint16_t Timer_FLAG)
         {
         case Timer_FLAG_Update: // 定时器更新
         {
-            return (flagType)(AUXINTIF & (1 << 2));
+            tmp = (flagType)(AUXINTIF & (1 << 2));
             break;
         }
         default:
