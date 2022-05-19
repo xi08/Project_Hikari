@@ -331,7 +331,7 @@ uint8_t I2C_WaitACK(I2C_enum I2Cx)
     {
     case I2C1: // I2C1
     {
-
+        
         break;
     }
     default:
@@ -343,8 +343,8 @@ uint8_t I2C_WaitACK(I2C_enum I2Cx)
 /**
  * @brief 发送单字节
  *
- * @param I2Cx
- * @param dat
+ * @param I2Cx 目标I2C单元
+ * @param dat 需要发送的数据
  */
 void I2C_Send(I2C_enum I2Cx, uint8_t dat)
 {
@@ -370,10 +370,10 @@ void I2C_Send(I2C_enum I2Cx, uint8_t dat)
 }
 
 /**
- * @brief 接受单字节
+ * @brief 接收单字节
  *
- * @param I2Cx
- * @return uint8_t
+ * @param I2Cx 目标I2C单元
+ * @return uint8_t 接收到的数据
  */
 uint8_t I2C_Receive(I2C_enum I2Cx)
 {

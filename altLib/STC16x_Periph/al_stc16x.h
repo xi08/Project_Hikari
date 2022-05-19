@@ -27,8 +27,8 @@ void assert_failed(uint8_t *file, uint32_t line);
 #endif
 
 // 扩展特殊功能寄存器访问
-#define EnableXFR() P_SW2 |= 0x80
-#define DisableXFR() P_SW2 &= ~0x80
+#define EnableXFR() (P_SW2 |= 0x80)
+#define DisableXFR() (P_SW2 &= ~0x80)
 
 // 兼容性类型定义
 typedef int32_t s32;
@@ -70,25 +70,21 @@ typedef uint8_t BOOL;
 typedef enum
 {
     RESET = 0,
-    SET = 1,
-    flag_ERROR = -1,
-}
-flagType;
+    SET = !RESET,
+} flagType;
 
 // 状态位
 typedef enum
 {
     DISABLE = 0,
     SUCCESS = 0,
-    ENABLE = 1,
-    FAILURE = 1,
-    status_ERROR = -1,
-
+    ENABLE = !DISABLE,
+    FAILURE = !SUCCESS,
 } statusType;
 
-#define bitAction_Set(bitVar, bitPos) bitVar |= (1 << bitPos)
-#define bitAction_Clr(bitVar, bitPos) bitVar &= ~(1 << bitPos)
-#define bitAction_Rev(bitVar, bitPos) bitVar ^= (1 << bitPos)
+#define bitAction_Set(bitVar, bitPos) (bitVar |= (1 << bitPos))
+#define bitAction_Clr(bitVar, bitPos) (bitVar &= ~(1 << bitPos))
+#define bitAction_Rev(bitVar, bitPos) (bitVar ^= (1 << bitPos))
 #define bitAction_Get(bitVar, bitPos) (bitVar & (1 << bitPos))
 
 #endif

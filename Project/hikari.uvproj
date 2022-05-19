@@ -555,24 +555,9 @@
               <FilePath>..\altLib\STC16x_Periph\al_stc16x_misc.c</FilePath>
             </File>
             <File>
-              <FileName>al_stc16x_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\altLib\STC16x_Periph\al_stc16x_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>al_stc16x_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\altLib\STC16x_Periph\al_stc16x_tim.c</FilePath>
-            </File>
-            <File>
               <FileName>al_stc16x_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\altLib\STC16x_Periph\al_stc16x_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>al_stc16x_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\altLib\STC16x_Periph\al_stc16x_uart.c</FilePath>
             </File>
           </Files>
         </Group>

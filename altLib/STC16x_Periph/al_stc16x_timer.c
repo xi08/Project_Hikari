@@ -460,9 +460,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            if(ET0 == 1)
-                return 
-            return (flagType)TF0;
+            return (flagType)(ET0 && TF0);
             break;
         }
         default:
@@ -472,12 +470,11 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
     }
     case Timer1: // Timer1
     {
-
         switch (Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)TF1;
+            return (flagType)(ET1 && TF0);
             break;
         }
         default:
@@ -491,7 +488,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)(AUXINTIF & (1 << 0));
+            return (flagType)((IE2 & (1 << 2)) && (AUXINTIF & (1 << 0)));
             break;
         }
         default:
@@ -505,7 +502,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)(AUXINTIF & (1 << 1));
+            return (flagType)((IE2 & (1 << 5)) && (AUXINTIF & (1 << 1)));
             break;
         }
         default:
@@ -519,7 +516,7 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            return (flagType)(AUXINTIF & (1 << 2));
+            return (flagType)((IE2 & (1 << 6)) && (AUXINTIF & (1 << 2)));
             break;
         }
         default:
@@ -553,7 +550,8 @@ void Timer_ClearITPendingBit(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            TF0 = 0;
+            if (ET0)
+                TF0 = 0;
             break;
         }
         default:
@@ -568,7 +566,8 @@ void Timer_ClearITPendingBit(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            TF1 = 0;
+            if (ET1)
+                TF1 = 0;
             break;
         }
         default:
@@ -582,7 +581,8 @@ void Timer_ClearITPendingBit(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            AUXINTIF &= ~(1 << 0);
+            if ((IE2 & (1 << 2)))
+                AUXINTIF &= ~(1 << 0);
             break;
         }
         default:
@@ -596,7 +596,8 @@ void Timer_ClearITPendingBit(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            AUXINTIF &= ~(1 << 1);
+            if ((IE2 & (1 << 5)))
+                AUXINTIF &= ~(1 << 1);
             break;
         }
         default:
@@ -610,7 +611,8 @@ void Timer_ClearITPendingBit(Timer_enum TimerX, uint16_t Timer_IT)
         {
         case Timer_IT_Update: // 定时器更新
         {
-            AUXINTIF &= ~(1 << 2);
+            if ((IE2 & (1 << 6)))
+                AUXINTIF &= ~(1 << 2);
             break;
         }
         default:
@@ -1034,6 +1036,84 @@ flagType Timer_GetFlagStatus(Timer_enum TimerX, uint16_t Timer_FLAG)
 {
     /* 检查参数合法性 */
     al_assert(IS_Timer_Periph(TimerX));
+    al_assert(IS_Timer_GET_FLAG(Timer_FLAG));
+
+    /* 设置参数 */
+    switch (TimerX)
+    {
+    case Timer0: // Timer0
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            return (flagType)(TF0);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer1: // Timer1
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            return (flagType)(TF1);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer2: // Timer2
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            return (flagType)(AUXINTIF & (1 << 0));
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer3: // Timer3
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            return (flagType)(AUXINTIF & (1 << 1));
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer4: // Timer4
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            return (flagType)(AUXINTIF & (1 << 2));
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 /**
@@ -1046,6 +1126,86 @@ void Timer_ClearFlag(Timer_enum TimerX, uint16_t Timer_FLAG)
 {
     /* 检查参数合法性 */
     al_assert(IS_Timer_Periph(TimerX));
+    al_assert(IS_Timer_GET_FLAG(Timer_FLAG));
+
+    /* 设置参数 */
+    switch (TimerX)
+    {
+    case Timer0: // Timer0
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+
+            TF0 = 0;
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer1: // Timer1
+    {
+
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            TF1 = 0;
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer2: // Timer2
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            AUXINTIF &= ~(1 << 0);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer3: // Timer3
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            AUXINTIF &= ~(1 << 1);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    case Timer4: // Timer4
+    {
+        switch (Timer_FLAG)
+        {
+        case Timer_FLAG_Update: // 定时器更新
+        {
+            AUXINTIF &= ~(1 << 2);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 /**
