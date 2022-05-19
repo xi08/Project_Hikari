@@ -28,8 +28,5 @@ void al_delay50us(uint16_t delayTime);
 void al_softwareReset(void);
 void al_downloadReset(void);
 
-#define al_swRST() IAP_CONTR = 0x20 // 软件复位
-#define al_dlRST() IAP_CONTR = 0x60 // 下载复位
-
 #endif
 #endif

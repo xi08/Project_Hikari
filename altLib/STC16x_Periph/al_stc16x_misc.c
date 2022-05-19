@@ -50,4 +50,22 @@ void al_delay2us(uint16_t delayTime)
     }
 }
 
+/**
+ * @brief 软件复位
+ *
+ */
+void al_softwareReset(void)
+{
+    IAP_CONTR = 0x20;
+}
+
+/**
+ * @brief ISP下载复位
+ *
+ */
+void al_downloadReset(void)
+{
+    IAP_CONTR = 0x60;
+}
+
 #endif

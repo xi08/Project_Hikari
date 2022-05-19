@@ -451,7 +451,6 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
     al_assert(IS_Timer_Periph(TimerX));
     al_assert(IS_Timer_GET_IT(Timer_IT));
 
-    /* 检测参数 */
     /* 设置参数 */
     switch (TimerX)
     {
@@ -539,6 +538,11 @@ flagType Timer_GetITStatus(Timer_enum TimerX, uint16_t Timer_IT)
  */
 void Timer_ClearITPendingBit(Timer_enum TimerX, uint16_t Timer_IT)
 {
+    /* 检查参数合法性 */
+    al_assert(IS_Timer_Periph(TimerX));
+    al_assert(IS_Timer_GET_IT(Timer_IT))
+
+    /* 清除参数 */
     
 }
 
