@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define>USE_8701E</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph;..\altLib\STC16F_Func;..\altLib\STC16F_Core;..\altLib\STC16F_Periph;..\altLib\Devices</IncludePath>
+              <IncludePath>..\Code;..\Lib\libraries;..\Lib\seekfree_libraries;..\Lib\seekfree_peripheral;..\User;..\Periph;..\altLib\Devices;..\altLib\STC16x_Core;..\altLib\STC16x_Periph</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -523,6 +523,56 @@
               <FileName>TFT18.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Periph\TFT18.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>altLib_Periph</GroupName>
+          <Files>
+            <File>
+              <FileName>al_stc16x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>al_stc16x_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\altLib\STC16x_Periph\al_stc16x_uart.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -70,16 +70,20 @@ typedef uint8_t BOOL;
 typedef enum
 {
     RESET = 0,
-    SET = !RESET,
-} flagType;
+    SET = 1,
+    flag_ERROR = -1,
+}
+flagType;
 
 // 状态位
 typedef enum
 {
     DISABLE = 0,
     SUCCESS = 0,
-    ENABLE = !DISABLE,
-    FAILURE = !SUCCESS,
+    ENABLE = 1,
+    FAILURE = 1,
+    status_ERROR = -1,
+
 } statusType;
 
 #define bitAction_Set(bitVar, bitPos) bitVar |= (1 << bitPos)
