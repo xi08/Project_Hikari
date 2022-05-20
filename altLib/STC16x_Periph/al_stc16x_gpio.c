@@ -180,55 +180,6 @@ void GPIO_Init(GPIO_enum GPIOx, GPIO_InitTypeDef *initStruct)
 }
 
 /**
- * @brief 反初始化GPIO组
- *
- * @param GPIOx 需要反初始化的GPIO组
- */
-void GPIO_DeInit(GPIO_enum GPIOx)
-{
-    /* 检查参数合法性 */
-    al_assert(IS_GPIO_Periph(GPIOx));
-    /* 清除参数 */
-    switch (GPIOx)
-    {
-    case GPIO0:
-        P0M1 = 0xff;
-        P0M0 = 0;
-        break;
-    case GPIO1:
-        P1M1 = 0xff;
-        P1M0 = 0;
-        break;
-    case GPIO2:
-        P2M1 = 0xff;
-        P2M0 = 0;
-        break;
-    case GPIO3:
-        P3M1 = 0x3c;
-        P3M0 = 0;
-        break;
-    case GPIO4:
-        P4M1 = 0xff;
-        P4M0 = 0;
-        break;
-    case GPIO5:
-        P5M1 = 0xff;
-        P5M0 = 0;
-        break;
-    case GPIO6:
-        P6M1 = 0xff;
-        P6M0 = 0;
-        break;
-    case GPIO7:
-        P7M1 = 0xff;
-        P7M0 = 0;
-        break;
-    default:
-        break;
-    }
-}
-
-/**
  * @brief 设置GPIO引脚翻转速度
  *
  * @param GPIOx 所设置的引脚所属GPIO组

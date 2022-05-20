@@ -53,7 +53,6 @@ typedef struct
 } I2C_InitTypeDef;
 
 void I2C_Init(I2C_enum I2Cx, I2C_InitTypeDef *initStruct);
-void I2C_DeInit(I2C_enum I2Cx);
 void I2C_StructInit(I2C_InitTypeDef *initStruct);
 void I2C_Cmd(I2C_enum I2Cx, statusType newStatus);
 

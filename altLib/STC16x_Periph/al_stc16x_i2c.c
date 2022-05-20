@@ -43,15 +43,6 @@ void I2C_Init(I2C_enum I2Cx, I2C_InitTypeDef *initStruct)
 }
 
 /**
- * @brief 反初始化I2C功能
- *
- * @param I2Cx 目标I2C单元
- */
-void I2C_DeInit(I2C_enum I2Cx)
-{
-}
-
-/**
  * @brief I2C使能状态配置
  *
  * @param I2Cx 目标I2C单元

@@ -5,5 +5,10 @@
 #include "al_stc16x.h"
 #ifdef USE_AltLib
 
+typedef enum
+{
+
+} EXTI_enum;
+
 #endif
 #endif

@@ -97,7 +97,6 @@ typedef struct
 
 } Timer_InitTypeDef;
 
-void Timer_DeInit(Timer_enum Timerx);
 void Timer_Init(Timer_enum Timerx, Timer_InitTypeDef *initStruct);
 void Timer_StructInit(Timer_InitTypeDef *initStruct);
 void Timer_Cmd(Timer_enum Timerx, statusType newStatus);

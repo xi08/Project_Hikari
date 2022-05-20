@@ -101,7 +101,6 @@ typedef struct
 } GPIO_InitTypeDef;
 
 void GPIO_Init(GPIO_enum GPIOx, GPIO_InitTypeDef *initStruct);
-void GPIO_DeInit(GPIO_enum GPIOx);
 
 void GPIO_SpeedConfig(GPIO_enum GPIOx, uint8_t GPIO_Pin, GPIO_Speed_enum GPIO_Speed);
 void GPIO_PullUpConfig(GPIO_enum GPIOx, uint8_t GPIO_Pin, GPIO_PullUp_enum GPIO_PullUpType);
