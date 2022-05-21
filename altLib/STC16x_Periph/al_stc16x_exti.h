@@ -6,7 +6,7 @@
 #ifdef USE_AltLib
 
 /**
- * @brief
+ * @brief 外部中断通道枚举
  *
  */
 typedef enum
@@ -23,24 +23,24 @@ typedef enum
 #define IS_EXTI_Channel_Fall(CH) (((CH) == EXTI_P36) || ((CH) == EXTI_P37) || ((CH) == EXTI_P30))
 
 /**
- * @brief
+ * @brief 外部中断触发模式枚举
  *
  */
 typedef enum
 {
-    EXTI_Trigger_Rising_Falling,
-    EXTI_Trigger_Falling,
+    EXTI_Trigger_Rising_Falling, // 边沿触发
+    EXTI_Trigger_Falling,        // 下降沿触发
 } EXTI_Trigger_enum;
 #define IS_EXTI_TRIGGER(TRIG) (((TRIG) == EXTI_Trigger_Falling) || ((TRIG) == EXTI_Trigger_Rising_Falling))
 
 /**
- * @brief
+ * @brief 外部中断工作模式枚举
  *
  */
 typedef enum
 {
-    EXTI_Mode_Interrupt,
-    EXTI_Mode_Event,
+    EXTI_Mode_Interrupt, // 中断模式
+    EXTI_Mode_Event,     // 事件模式（查询模式）
 } EXTI_Mode_enum;
 #define IS_EXTI_MODE(MODE) (((MODE) == EXTI_Mode_Interrupt) || ((MODE) == EXTI_Mode_Event))
 

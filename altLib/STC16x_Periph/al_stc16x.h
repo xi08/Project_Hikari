@@ -4,17 +4,17 @@
 #ifndef __al_stc16x_h
 #define __al_stc16x_h
 
-#include "al_stdint16.h"
+#ifdef USE_AltLib
+
+#include "al_stdint.h"
 #include "stc16.h"
 #include <intrins.h>
-
-#ifdef USE_AltLib
 
 #define __altLib__ 2204
 #define __altLib_Platform__ "stc16"
 
 // 断言
-#ifndef _ReleaseVersion
+#ifdef _DebugVersion
 #ifdef altLib_UseFullAssert
 #define al_assert(expr) ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__, __LINE__))
 void assert_failed(uint8_t *file, uint32_t line);
@@ -65,6 +65,8 @@ typedef volatile const uint8_t vuc8;   /* 只读 */
 
 // 布尔
 typedef uint8_t BOOL;
+#define TRUE 1
+#define FALSE 0
 
 // 标志位
 typedef enum
