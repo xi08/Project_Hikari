@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "*.h": "c",
+        "STRING.H": "c",
+        "STDARG.H": "c",
+        "INTRINS.H": "c",
+        "STDDEF.H": "c",
+        "ABSACC.H": "c",
+        "LIMITS.H": "c",
+        "FLOAT.H": "c",
+        "ASSERT.H": "c",
+        "STC16F.H": "c",
+        "REG251T.H": "c",
+        "REG251S.H": "c",
+        "ERRNO.H": "cpp",
+        "MATH.H": "cpp",
+        "SROM.H": "cpp",
+        "CTYPE.H": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled",
+}

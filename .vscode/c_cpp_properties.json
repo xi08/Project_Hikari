@@ -1,0 +1,42 @@
+{
+    "configurations": [
+        {
+            "name": "SmartCar_STC16",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\Keil_v5\\C251\\INC"
+            ],
+            "defines": [
+                "sbit=unsigned char",
+                "sfr=unsigned char",
+                "sfr16=unsigned short",
+                "code=const",
+                "bit=char",
+                "data=",
+                "bdata=",
+                "edata=",
+                "idata=",
+                "pdata=",
+                "xdata=",
+                "far=",
+                "interrupt=",
+                "reentrant=",
+                "USE_8701E",
+                "USE_AltLib",
+                "_DebugVersion",
+                "SYSclk_30Mhz"
+            ],
+            "cStandard": "c89",
+            "cppStandard": "c++98",
+            "intelliSenseMode": "gcc-arm",
+            "compilerPath": "",
+            "compilerArgs": [],
+            "mergeConfigurations": true,
+            "browse": {
+                "path": [],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
